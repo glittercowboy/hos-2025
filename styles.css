@@ -364,6 +364,18 @@ section {
     margin-bottom: var(--spacing-sm);
 }
 
+/* Solution Section */
+.solution img {
+    display: block;
+    max-width: 100%;
+    margin: 0 auto; /* Center the image */
+}
+
+.solution .row {
+    align-items: center; /* Vertically center the columns */
+    justify-content: center; /* Horizontally center the row */
+}
+
 /* About Section */
 .about img {
     display: block;
