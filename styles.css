@@ -731,7 +731,7 @@ ANIMATIONS
 ========================================
 */
 
-/* Fade in animation for section content */
+/* Fade in animation for individual components */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -743,14 +743,14 @@ ANIMATIONS
     }
 }
 
-/* Apply the animation to the container inside sections instead of the sections themselves */
-section .container {
+/* Apply the animation to individual components instead of entire section containers */
+.fade-in {
     opacity: 0;
     animation: fadeIn 0.8s ease forwards;
     animation-play-state: paused;
 }
 
-section.visible .container {
+.fade-in.visible {
     animation-play-state: running;
 }
 
