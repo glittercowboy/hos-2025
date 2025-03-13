@@ -448,6 +448,29 @@ section {
     margin-bottom: var(--spacing-md);
 }
 
+.structure .card {
+    text-align: center;
+    padding: 40px; /* Increased padding to match syllabus cards */
+    border: 6px double var(--color-black); /* Add double black border */
+    display: flex; /* Use flexbox for vertical centering */
+    flex-direction: column; /* Stack content vertically */
+    justify-content: center; /* Center content vertically */
+}
+
+.structure .card h3 {
+    margin-top: 0; /* Remove top margin from headings */
+    margin-bottom: var(--spacing-sm); /* Consistent spacing below headings */
+}
+
+.structure .card h5 {
+    margin-top: 0; /* Remove top margin from headings */
+    margin-bottom: var(--spacing-sm); /* Consistent spacing below headings */
+}
+
+.structure .card p {
+    margin-bottom: 0; /* Remove bottom margin from paragraphs */
+}
+
 /* Tenets Section */
 .tenets h2 {
     text-align: center;
