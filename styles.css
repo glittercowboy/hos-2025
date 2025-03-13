@@ -592,10 +592,25 @@ section {
 
 .pricing .card {
     text-align: center;
+    padding: 40px; /* Increased padding to match other section cards */
+    border: 6px double var(--color-black); /* Add double black border */
+    display: flex; /* Use flexbox for vertical centering */
+    flex-direction: column; /* Stack content vertically */
+    justify-content: center; /* Center content vertically */
+}
+
+.pricing .card h3 {
+    margin-top: 0; /* Remove top margin from headings */
+    margin-bottom: var(--spacing-sm); /* Consistent spacing below headings */
+}
+
+.pricing .card p {
+    margin-bottom: var(--spacing-md); /* Add more space before the button */
 }
 
 .pricing .button {
-    margin-top: var(--spacing-sm);
+    margin-top: auto; /* Push button to bottom of flex container */
+    align-self: center; /* Center the button horizontally */
 }
 
 /* Center the pricing container and row */
