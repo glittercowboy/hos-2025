@@ -487,8 +487,9 @@ section {
 }
 
 .tenets img {
-    max-width: 100%;
-    margin-bottom: var(--spacing-sm);
+    max-width: 50%; /* Reduced to 50% of their original size */
+    margin: 0 auto var(--spacing-sm); /* Center the image horizontally with auto margins */
+    display: block; /* Ensure proper centering */
 }
 
 .tenets .card h3 {
