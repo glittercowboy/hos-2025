@@ -22,29 +22,32 @@ document.addEventListener('DOMContentLoaded', function() {
  * This function adds a 'visible' class to sections as they enter the viewport
  */
 function initSectionAnimations() {
-    // Get all sections
+    // Function to check if an element is in the viewport
+    function isElementInViewport(el) {
+        const rect = el.getBoundingClientRect();
+        return (
+            rect.top <= (window.innerHeight || document.documentElement.clientHeight) * 0.75 &&
+            rect.bottom >= 0
+        );
+    }
+
+    // Get all sections with containers
     const sections = document.querySelectorAll('section');
-    
-    // Create an observer for scrolling
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            // Add 'visible' class when section enters viewport
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                // Optional: Stop observing after animation
-                // observer.unobserve(entry.target);
+
+    // Function to handle visibility on scroll
+    function handleVisibility() {
+        sections.forEach(function(section) {
+            if (isElementInViewport(section)) {
+                section.classList.add('visible');
             }
         });
-    }, {
-        // Start animation when section is 20% visible
-        threshold: 0.2,
-        rootMargin: '0px'
-    });
-    
-    // Apply observer to all sections
-    sections.forEach(section => {
-        observer.observe(section);
-    });
+    }
+
+    // Check visibility on initial load
+    handleVisibility();
+
+    // Check visibility on scroll
+    window.addEventListener('scroll', handleVisibility);
 }
 
 /**
