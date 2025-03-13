@@ -368,6 +368,17 @@ section {
     text-align: center;
 }
 
+/* Make Testimonials 1 section dark */
+.testimonials-1 {
+    background-color: var(--color-black);
+}
+
+/* Make the cards in Testimonials 1 section black with white text */
+.testimonials-1 .card {
+    background-color: var(--color-black);
+    color: var(--color-white);
+}
+
 .testimonials-1 img,
 .testimonials-2 img {
     max-width: 100%;
