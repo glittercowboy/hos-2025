@@ -424,6 +424,21 @@ section {
 .syllabus .card {
     text-align: center; /* Center the content inside cards */
     padding: 40px; /* Increased padding for syllabus cards */
+    border: 6px double var(--color-black); /* Add double black border */
+    display: flex; /* Use flexbox for vertical centering */
+    flex-direction: column; /* Stack content vertically */
+    justify-content: center; /* Center content vertically */
+    height: 200px; /* Fixed height for consistent card sizes */
+}
+
+.syllabus .card h3,
+.syllabus .card h5 {
+    margin-top: 0; /* Remove top margin from headings */
+    margin-bottom: var(--spacing-sm); /* Consistent spacing below headings */
+}
+
+.syllabus .card p {
+    margin-bottom: 0; /* Remove bottom margin from paragraphs */
 }
 
 /* Structure Section */
