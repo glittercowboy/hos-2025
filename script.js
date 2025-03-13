@@ -98,3 +98,9 @@ function initSmoothScrolling() {
                 // Scroll smoothly to the target
                 targetElement.scrollIntoView({
                     behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+}
