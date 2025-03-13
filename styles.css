@@ -289,7 +289,7 @@ section {
 /* Secondary section styling - secondary color background with white text */
 .section-secondary {
     background-color: var(--color-secondary);
-    color: var(--color-white);
+    color: var(--color-black);
 }
 
 /* Tertiary section styling - tertiary color background with black text */
