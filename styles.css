@@ -85,7 +85,6 @@ TYPOGRAPHY
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
-    text-transform: uppercase;
     line-height: 1.2;
     margin-bottom: var(--spacing-sm);
 }
@@ -297,6 +296,18 @@ section {
 /* White drop cap for problem section */
 .problem .drop-cap::first-letter {
     color: var(--color-white); /* White drop cap */
+    font-size: 4em; /* Size to match the double line height */
+    line-height: 0.8; /* Tighter line height for better alignment */
+    margin-top: 0; /* Remove top margin */
+    margin-right: 0.15em; /* Space to the right */
+    padding-top: 0.1em; /* Padding to align with text top */
+    height: 1.7em; /* Control the height to be exactly 2 lines with line-height: 2 */
+    float: left; /* Ensure it floats properly */
+}
+
+/* Special styling for paragraphs with drop caps in the problem section */
+.problem .drop-cap {
+    line-height: 2; /* Keep the double line height */
 }
 
 /* Problem Section heading */
