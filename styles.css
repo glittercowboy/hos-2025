@@ -598,6 +598,16 @@ section {
     margin-top: var(--spacing-sm);
 }
 
+/* Center the pricing container and row */
+.pricing .container {
+    text-align: center; /* Center the container content */
+}
+
+.pricing .row {
+    justify-content: center; /* Center the row horizontally */
+    gap: var(--spacing-md); /* Add some gap between the cards */
+}
+
 /* Application Section */
 .application h2,
 .application > .container > p {
