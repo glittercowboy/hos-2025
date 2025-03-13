@@ -369,6 +369,14 @@ section {
     margin-bottom: var(--spacing-sm);
 }
 
+/* Specific styling for testimonial images in section 1 */
+.testimonials-1 img {
+    max-width: 50%; /* Make images a quarter of their size */
+    margin-left: auto; /* Center the image */
+    margin-right: auto; /* Center the image */
+    margin-bottom: var(--spacing-md);
+}
+
 /* Solution Section */
 .solution img {
     display: block;
