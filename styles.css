@@ -696,6 +696,17 @@ section {
     margin-bottom: var(--spacing-md);
 }
 
+.faq h4 {
+    margin-top: var(--spacing-md);
+    margin-bottom: var(--spacing-xs);
+    color: var(--color-white);
+}
+
+.faq p {
+    margin-bottom: var(--spacing-md);
+    color: var(--color-white);
+}
+
 /* Final Note Section */
 .final-note h3 {
     text-align: center;
