@@ -479,11 +479,30 @@ section {
 
 .tenets .card {
     text-align: center;
+    padding: 40px; /* Increased padding to match syllabus cards */
+    border: 6px double var(--color-black); /* Add double black border */
+    display: flex; /* Use flexbox for vertical centering */
+    flex-direction: column; /* Stack content vertically */
+    justify-content: center; /* Center content vertically */
 }
 
 .tenets img {
     max-width: 100%;
     margin-bottom: var(--spacing-sm);
+}
+
+.tenets .card h3 {
+    margin-top: 0; /* Remove top margin from headings */
+    margin-bottom: var(--spacing-sm); /* Consistent spacing below headings */
+}
+
+.tenets .card h4 {
+    margin-top: 0; /* Remove top margin from headings */
+    margin-bottom: var(--spacing-sm); /* Consistent spacing below headings */
+}
+
+.tenets .card p {
+    margin-bottom: 0; /* Remove bottom margin from paragraphs */
 }
 
 /* Pricing Section */
