@@ -53,6 +53,7 @@ to change styling across the entire website.
     --container-width-12: var(--max-site-width); /* 12 blocks wide (full width) */
     --container-width-10: calc(var(--block-width) * 10); /* 10 blocks wide */
     --container-width-8: calc(var(--block-width) * 8); /* 8 blocks wide */
+    --container-width-6: calc(var(--block-width) * 6); /* 6 blocks wide */
     --card-padding: 20px;
 }
 
@@ -159,6 +160,10 @@ LAYOUT
 }
 
 /* Container width classes for different block widths */
+.width-6 {
+    max-width: var(--container-width-6);
+}
+
 .width-8 {
     max-width: var(--container-width-8);
 }
@@ -590,37 +595,52 @@ section {
     margin-bottom: var(--spacing-md);
 }
 
-.pricing .card {
-    text-align: center;
-    padding: 40px; /* Increased padding to match other section cards */
-    border: 6px double var(--color-black); /* Add double black border */
-    display: flex; /* Use flexbox for vertical centering */
-    flex-direction: column; /* Stack content vertically */
-    justify-content: center; /* Center content vertically */
-}
-
-.pricing .card h3 {
-    margin-top: 0; /* Remove top margin from headings */
-    margin-bottom: var(--spacing-sm); /* Consistent spacing below headings */
-}
-
-.pricing .card p {
-    margin-bottom: var(--spacing-md); /* Add more space before the button */
-}
-
-.pricing .button {
-    margin-top: auto; /* Push button to bottom of flex container */
-    align-self: center; /* Center the button horizontally */
-}
-
-/* Center the pricing container and row */
 .pricing .container {
-    text-align: center; /* Center the container content */
+    text-align: center;
 }
 
 .pricing .row {
-    justify-content: center; /* Center the row horizontally */
-    gap: var(--spacing-md); /* Add some gap between the cards */
+    justify-content: center;
+    gap: var(--spacing-md);
+}
+
+.pricing .card {
+    padding: 40px;
+    border: 6px double black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.pricing .card h3 {
+    margin-top: 0;
+    margin-bottom: var(--spacing-sm);
+    text-align: center;
+}
+
+.pricing .card p {
+    text-align: left;
+    margin-bottom: var(--spacing-md);
+}
+
+.pricing .card .button {
+    background-color: black;
+    color: white;
+    display: block;
+    width: 80%;
+    max-width: 200px;
+    margin: 0 auto;
+}
+
+.pricing .card .button:hover {
+    background-color: var(--color-accent);
+    color: black;
+}
+
+.pricing .payment-options {
+    margin-top: var(--spacing-md);
+    font-style: italic;
 }
 
 /* Application Section */
