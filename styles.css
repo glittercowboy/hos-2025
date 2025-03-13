@@ -506,6 +506,26 @@ section {
     margin-bottom: 0; /* Remove bottom margin from paragraphs */
 }
 
+.tenets .button {
+    background-color: var(--color-black); /* Black background for the button */
+    color: var(--color-white); /* White text for better contrast */
+    display: inline-block; /* Prevent full width */
+    min-width: 200px; /* Set a minimum width */
+    max-width: 300px; /* Set a maximum width */
+    margin: var(--spacing-md) auto 0; /* Center the button with auto margins */
+    text-align: center; /* Center the text inside the button */
+}
+
+/* Add this to center the button container */
+.tenets .container {
+    text-align: center; /* Center the button container */
+}
+
+.tenets .button:hover {
+    background-color: var(--color-tertiary); /* Keep the hover effect */
+    transform: scale(1.05); /* Keep the scale effect on hover */
+}
+
 /* Pricing Section */
 .pricing h2 {
     text-align: center;
