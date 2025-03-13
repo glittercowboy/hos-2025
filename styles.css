@@ -401,10 +401,29 @@ section {
     text-align: center;
 }
 
+/* Guest teacher images - updated for consistent sizing */
+.guest-teachers img {
+    width: 250px; /* Fixed width for all images */
+    height: 250px; /* Fixed height for all images */
+    object-fit: cover; /* Maintains aspect ratio while filling the container */
+    display: block;
+    margin: 0 auto var(--spacing-sm);
+    border-radius: 4px; /* Optional: adds slightly rounded corners */
+}
+
 /* Syllabus Section */
 .syllabus h2 {
     text-align: center;
     margin-bottom: var(--spacing-md);
+}
+
+.syllabus .row {
+    justify-content: center; /* Center the columns horizontally */
+}
+
+.syllabus .card {
+    text-align: center; /* Center the content inside cards */
+    padding: 40px; /* Increased padding for syllabus cards */
 }
 
 /* Structure Section */
