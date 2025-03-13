@@ -371,7 +371,15 @@ section {
 
 /* Specific styling for testimonial images in section 1 */
 .testimonials-1 img {
-    max-width: 50%; /* Make images a quarter of their size */
+    max-width: 50%; /* Make images half of their size */
+    margin-left: auto; /* Center the image */
+    margin-right: auto; /* Center the image */
+    margin-bottom: var(--spacing-md);
+}
+
+/* Specific styling for testimonial images in section 2 */
+.testimonials-2 img {
+    max-width: 33%; /* Make images half of their size */
     margin-left: auto; /* Center the image */
     margin-right: auto; /* Center the image */
     margin-bottom: var(--spacing-md);
