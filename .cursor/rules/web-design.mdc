@@ -1,0 +1,29 @@
+---
+description: Web Design Rules
+globs: 
+alwaysApply: false
+---
+- Always write SUPER clean and simple code.
+- Do not use drop shadows for cards (or anything for that matter. 
+- Cards should have at least 20px padding.
+- Cards should just use contrasting color to stand out
+- All headers should be full caps
+- Use major third as font size ratio (add a place in the code where I can easily and simply change a value and it automatically adjusts font size ratio across the page. Comment it clearly so I can find it)
+- Use base font size of 16px (add a place in the code where I can simply change this value and it automatically adjusts across the page. Comment it clearly so I can find it)
+- Black is #1d1d1d. White is #efefef. Accent color is #e6ac55. Secondary color is #35482a. Third is #e2725b. (Add a place in the code where I can easily and simply change these values and have them reflect across the whole site. Comment it clearly so I can find it)
+- Favour writing styling code that I can easily adjust and have it dynamically apply across the code base. (Think of it like a style-center where adjustments can be made in one place and have them apply site wide. Like I asked with base font size/font ratio, colors etc)
+- Make sure the website is mobile optimized always.
+- Always add clear comments for what each section of code is.
+- Import these fonts: canela text (custom font I will upload to fonts folder), Poppins, crimson text, inter.
+- Create these folder: images, fonts.
+- All styling must be in styles.css. Uses classes rather than inline css in the html)
+- All scripting should be in script.js
+- Use template images for now (if an image is listed in the below guide)
+- Add subtle button hover animations (slight color change and scale increase)
+- Do not add card hover animations.
+- Add subtle fade in for each section as you scroll down.
+- Each section should have a contrasting color background with the last and next section (i.e. black bg -> white bg -> accent color bg) 
+- Each section should have good vertical padding (60-100px at top and bottom)
+- Do not use rounded edges anywhere. Sharp always.
+- The website should have a maximum width of 12 blocks. Note each sections guidelines for block width below.
+- Make sure that all code is VERY easy to read and understand with plenty of of comments and spacing between sections in the code for skimmability.
