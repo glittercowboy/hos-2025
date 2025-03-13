@@ -47,7 +47,11 @@ to change styling across the entire website.
     LAYOUT VARIABLES
     Change these to adjust the grid layout.
     */
-    --container-max-width: 1200px;
+    --max-site-width: 1440px; /* Maximum width of the entire site */
+    --block-width: calc(var(--max-site-width) / 12); /* Width of a single block */
+    --container-width-12: var(--max-site-width); /* 12 blocks wide (full width) */
+    --container-width-10: calc(var(--block-width) * 10); /* 10 blocks wide */
+    --container-width-8: calc(var(--block-width) * 8); /* 8 blocks wide */
     --card-padding: 20px;
 }
 
@@ -86,6 +90,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
+    font-family: 'Canela Text', serif;
     font-size: var(--font-size-h1);
 }
 
@@ -117,9 +122,21 @@ LAYOUT
 
 .container {
     width: 100%;
-    max-width: var(--container-max-width);
     margin: 0 auto;
     padding: 0 var(--spacing-sm);
+}
+
+/* Container width classes for different block widths */
+.width-8 {
+    max-width: var(--container-width-8);
+}
+
+.width-10 {
+    max-width: var(--container-width-10);
+}
+
+.width-12 {
+    max-width: var(--container-width-12);
 }
 
 .row {
@@ -183,7 +200,7 @@ COMPONENTS
 }
 
 .button:hover {
-    background-color: var(--color-secondary);
+    background-color: var(--color-tertiary);
     color: var(--color-white);
     transform: scale(1.05);
 }
