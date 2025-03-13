@@ -470,6 +470,11 @@ section {
     margin: 0 auto var(--spacing-md);
 }
 
+/* White drop cap for About section */
+.about .drop-cap::first-letter {
+    color: var(--color-white); /* White drop cap */
+}
+
 /* Guest Teachers Section */
 .guest-teachers .card {
     text-align: center;
@@ -734,6 +739,9 @@ footer {
 footer img {
     max-width: 200px;
     margin-bottom: var(--spacing-sm);
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
 }
 
 /* 
