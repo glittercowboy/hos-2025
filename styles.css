@@ -140,7 +140,7 @@ p {
     font-weight: 900;
     float: left;
     margin-right: 0.15em; /* Space to the right */
-    line-height: 0.8; /* Tighter line height for better alignment */
+    line-height: 0.9; /* Tighter line height for better alignment */
     margin-top: 0; /* Remove top margin */
     padding-top: 0.1em; /* Padding to align with text top */
     height: 1.7em; /* Control the height to be exactly 2 lines with line-height: 2 */
@@ -472,7 +472,7 @@ section {
 
 /* White drop cap for About section */
 .about .drop-cap::first-letter {
-    color: var(--color-white); /* White drop cap */
+    color: var(--color-accent); /* White drop cap */
 }
 
 /* Guest Teachers Section */
