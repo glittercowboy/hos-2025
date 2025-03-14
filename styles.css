@@ -14,6 +14,7 @@ to change styling across the entire website.
     --color-black: #1d1d1d;
     --color-white: #efefef;
     --color-accent: #e6ac55;
+    --color-accent-hover: #edb45f;
     --color-secondary: #35482a;
     --color-tertiary: #e2725b;
 
@@ -244,7 +245,7 @@ img {
 }
 
 .button:hover {
-    background-color: var(--color-tertiary);
+    background-color: var(--color-accent-hover);
     color: var(--color-white);
     transform: scale(1.05);
 }
