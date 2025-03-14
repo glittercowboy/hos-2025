@@ -5,9 +5,13 @@
   "main": "index.html",
   "scripts": {
     "start": "serve",
-    "build": "echo 'No build step required'"
+    "build": "echo 'No build step required'",
+    "optimize-images": "node optimize-images.js"
   },
   "dependencies": {
     "serve": "^14.2.1"
+  },
+  "devDependencies": {
+    "sharp": "^0.33.2"
   }
 } 

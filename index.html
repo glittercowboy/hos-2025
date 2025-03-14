@@ -4,11 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Heart of Sound - A 12-Week Intuitive Music Production Course</title>
-    <link rel="stylesheet" href="styles.css">
-    <!-- Font links will go here when you upload your custom fonts -->
+    <!-- Preload critical resources -->
+    <link rel="preload" href="images/jungle.jpg" as="image" type="image/jpeg">
+    <!-- Font preconnect -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font display swap for better performance -->
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <!-- Fallback for font loading -->
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    </noscript>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <!-- #1 Hero Section (1 column - 12 blocks wide) -->
@@ -16,7 +23,6 @@
         <div class="container width-12">
             <h5 style="font-family: 'Crimson Text', serif; font-weight: 400;">TÂCHES PRESENTS:</h5>
             <h1>HEART<br>OF SOUND</h1>
-           
             <h5>HOLISTIC MUSIC PRODUCTION COURSE</h5>
             <h6 style="font-weight: 400; font-style: italic;">WITH SPECIAL GUESTS:</h6>
             <h3>MOSE | KORA | YEMANJO | AGUAVA</h3>
@@ -86,14 +92,30 @@
                 Instead, you enter a conversation with music itself.
             </h5>
             <p style="line-height: 2; margin-bottom: 40px;">
-            What would it feel like to finish tracks regularly not through discipline or willpower, but because you're so engaged in the creative process that completion becomes natural?<br><br>
-            The most valuable asset you possess isn't your technical knowledge or plugin collection – it's your unique perspective. No one else has lived your exact life, felt your specific emotions, or experienced sound through your particular sensory system. When you create from this authentic place:   
+                What emerges is a transformation in three key dimensions:   
             </p>
+
+            <h5 style="text-align: left;">YOUR CREATIVE PROCESS</h5>
             <ul style="line-height: 2; margin-bottom: 40px; margin-left: 40px;">
+                <li>You finish tracks naturally because you're engaged in the process, not forcing outcomes</li>
                 <li>Technical decisions become clearer because they serve your expression</li>
-                <li>You're no longer lost in endless options because you have a clear artistic direction</li>
-                <li>Your music develops a signature quality that listeners can recognize instantly</li>
+                <li>The endless overthinking that paralyzes most producers gives way to meaningful creation</li>
             </ul>
+
+            <h5 style="text-align: left;">YOUR UNIQUE VOICE</h5>
+            <ul style="line-height: 2; margin-bottom: 40px; margin-left: 40px;">
+                <li>Your most valuable asset isn't technical knowledge but your unique perspective</li>
+                <li>Your music develops a signature quality that listeners instantly recognize</li>
+                <li>No one else has lived your exact life or experienced sound through your sensory system</li>
+            </ul>
+
+            <h5 style="text-align: left;">YOUR RELATIONSHIP WITH MUSIC</h5>
+            <ul style="line-height: 2; margin-bottom: 40px; margin-left: 40px;">
+                <li>You build a sustainable creative practice that doesn't depend on sporadic inspiration</li>
+                <li>Your approach remains relevant regardless of how production technology evolves</li>
+                <li>Your relationship with music becomes regenerative rather than extractive</li>
+            </ul>
+
             <p style="line-height: 2; margin-bottom: 40px;">
                 This shift creates profound creative freedom. The endless overthinking that paralyzes so many producers – "Is this kick drum right?" "Does this arrangement follow the rules?" – gives way to more meaningful questions about emotional impact and authentic expression.<br><br>
             </p>
@@ -602,5 +624,38 @@
     </footer>
 
     <script src="script.js"></script>
+    <script>
+        // Optimize image loading
+        document.addEventListener('DOMContentLoaded', function() {
+            // Lazy load images that are not in the viewport
+            const lazyImages = document.querySelectorAll('img');
+            
+            if ('loading' in HTMLImageElement.prototype) {
+                // Browser supports native lazy loading
+                lazyImages.forEach(img => {
+                    if (!img.hasAttribute('loading') && !img.closest('.hero')) {
+                        img.setAttribute('loading', 'lazy');
+                    }
+                });
+            } else {
+                // Fallback for browsers that don't support lazy loading
+                const lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+                    entries.forEach(function(entry) {
+                        if (entry.isIntersecting) {
+                            const lazyImage = entry.target;
+                            lazyImage.src = lazyImage.dataset.src;
+                            lazyImageObserver.unobserve(lazyImage);
+                        }
+                    });
+                });
+                
+                lazyImages.forEach(function(lazyImage) {
+                    if (!lazyImage.closest('.hero')) {
+                        lazyImageObserver.observe(lazyImage);
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html> 

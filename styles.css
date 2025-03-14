@@ -326,6 +326,7 @@ section {
     align-items: center;
     text-align: center;
     position: relative;
+    will-change: transform; /* Hardware acceleration hint */
 }
 
 .hero::before {
