@@ -317,7 +317,7 @@ section {
 
 /* Hero Section */
 .hero {
-    background-image: url('images/jungle.jpg');
+    background-image: url('images-optimized/jungle.webp');
     background-size: cover;
     background-position: center;
     color: var(--color-white);
