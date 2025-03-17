@@ -885,4 +885,78 @@ For custom font (Canela Text)
     src: url('fonts/Canela Text Family/CanelaText-Black-Trial.otf') format('opentype');
     font-weight: 900;
     font-style: normal;
+}
+
+/* Transformation boxes styling */
+.transformation-box {
+    border-left: 4px solid var(--color-accent);
+    padding: 25px;
+    margin-bottom: 40px;
+    background-color: rgba(255,255,255,0.05);
+    background-image: 
+        radial-gradient(circle at 100% 100%, rgba(230, 172, 85, 0.03) 0, rgba(230, 172, 85, 0) 20px),
+        linear-gradient(to right, rgba(230, 172, 85, 0.02), rgba(230, 172, 85, 0) 70%);
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.transformation-box:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.0);
+}
+
+.transformation-box:hover .icon-container {
+    transform: scale(1.1);
+    background-color: rgba(230, 172, 85, 0.25);
+}
+
+.transformation-box:hover .corner-accent {
+    width: 100px;
+    height: 100px;
+}
+
+.transformation-box .corner-accent {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 80px;
+    height: 80px;
+    background-color: rgba(230, 172, 85, 0.05);
+    border-radius: 0 0 0 80px;
+    transition: width 0.3s ease, height 0.3s ease;
+}
+
+.transformation-box h5 {
+    text-align: left;
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+.transformation-box .icon-container {
+    background-color: rgba(230, 172, 85, 0.15);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 12px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.transformation-box .icon-container i {
+    color: var(--color-accent);
+    font-size: 1.1em;
+}
+
+.transformation-box p {
+    line-height: 2;
+    margin-bottom: 0;
+    position: relative;
+    z-index: 1;
 } 
