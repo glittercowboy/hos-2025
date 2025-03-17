@@ -478,18 +478,99 @@ section {
 }
 
 /* Guest Teachers Section */
-.guest-teachers .card {
-    text-align: center;
+.guest-teachers {
+    background-color: rgba(255, 255, 255, 0.02);
+    background-image: 
+        radial-gradient(circle at 20% 20%, rgba(230, 172, 85, 0.03) 0, rgba(230, 172, 85, 0) 50px),
+        radial-gradient(circle at 80% 80%, rgba(230, 172, 85, 0.03) 0, rgba(230, 172, 85, 0) 50px);
+    padding: 80px 0;
 }
 
-/* Guest teacher images - updated for consistent sizing */
-.guest-teachers img {
-    width: 250px; /* Fixed width for all images */
-    height: 250px; /* Fixed height for all images */
-    object-fit: cover; /* Maintains aspect ratio while filling the container */
-    display: block;
-    margin: 0 auto var(--spacing-sm);
-    border-radius: 4px; /* Optional: adds slightly rounded corners */
+/* Guest Teacher Cards */
+.guest-teacher-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 30px;
+    transition: transform 0.3s ease;
+    padding: 30px 20px;
+    background-color: rgba(255, 255, 255, 0.03);
+    border-radius: 4px;
+}
+
+.guest-teacher-card:hover {
+    transform: translateY(-3px);
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.guest-teacher-card img {
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    margin-bottom: 20px;
+    border: 2px solid rgba(230, 172, 85, 0.3);
+    transition: border-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.guest-teacher-card:hover img {
+    border-color: var(--color-accent);
+    transform: scale(1.05);
+}
+
+.guest-teacher-card h3 {
+    margin-bottom: 15px;
+    color: var(--color-accent);
+}
+
+.guest-teacher-card p {
+    line-height: 1.8;
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.streaming-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin-top: 20px;
+}
+
+.streaming-button {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px;
+    background-color: transparent;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.streaming-button:hover {
+    transform: translateY(-2px);
+}
+
+.streaming-button i {
+    font-size: 1.4em;
+    color: var(--color-black);
+}
+
+.spotify-button, .apple-button {
+    border: none;
+}
+
+.spotify-button:hover, .apple-button:hover {
+    background-color: transparent;
+}
+
+.guest-teacher-divider {
+    width: 100%;
+    height: 1px;
+    background-color: rgba(230, 172, 85, 0.2);
+    margin: 40px 0;
 }
 
 /* Syllabus Section */
@@ -904,7 +985,7 @@ For custom font (Canela Text)
 
 .transformation-box:hover {
     transform: translateY(-3px);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.0);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
 }
 
 .transformation-box:hover .icon-container {
