@@ -2,16 +2,13 @@
   "name": "heart-of-sound-course-website",
   "version": "1.0.0",
   "description": "Heart of Sound Course Website",
-  "main": "index.html",
+  "main": "index.js",
   "scripts": {
-    "start": "serve",
-    "build": "echo 'No build step required'",
-    "optimize-images": "node optimize-images.js"
+    "dev": "vercel dev",
+    "build": "vercel build"
   },
   "dependencies": {
-    "serve": "^14.2.1"
-  },
-  "devDependencies": {
-    "sharp": "^0.33.2"
+    "axios": "^1.6.2",
+    "crypto": "^1.0.1"
   }
 } 

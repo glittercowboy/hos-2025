@@ -127,8 +127,12 @@ function initApplicationForm() {
             
             // Prepare form data for submission
             const formData = new FormData(form);
+            const formDataObject = {};
+            formData.forEach((value, key) => {
+                formDataObject[key] = value;
+            });
             
-            // Submit form data to Formspree
+            // 1. Submit to Formspree (your existing code)
             fetch('https://formspree.io/f/manenlgj', {
                 method: 'POST',
                 body: formData,
@@ -138,15 +142,28 @@ function initApplicationForm() {
             })
             .then(response => {
                 if (response.ok) {
-                    return response.json();
+                    // 2. Browser-side pixel event (for redundancy)
+                    fbq('track', 'CompleteRegistration');
+                    
+                    // 3. Send to Facebook CAPI via Vercel function
+                    return fetch('/api/facebook-conversion', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            event_name: 'CompleteRegistration',
+                            user_data: {
+                                email: formDataObject.email || '',
+                                name: formDataObject.name || ''
+                            }
+                        })
+                    }).then(() => response.json());
                 }
                 throw new Error('Network response was not ok.');
             })
             .then(data => {
                 console.log('Form submitted successfully', data);
-                
-                // Track the completed application with Meta Pixel
-                fbq('track', 'CompleteRegistration');
                 
                 // Hide form
                 document.querySelector('.application-form').classList.add('hidden');
