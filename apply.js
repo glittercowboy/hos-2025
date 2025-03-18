@@ -145,25 +145,43 @@ function initApplicationForm() {
                     // 2. Browser-side pixel event (for redundancy)
                     fbq('track', 'CompleteRegistration');
                     
-                    // 3. Send to Facebook CAPI via Vercel function
-                    return fetch('/api/facebook-conversion', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({
-                            event_name: 'CompleteRegistration',
-                            user_data: {
-                                email: formDataObject.email || '',
-                                name: formDataObject.name || ''
-                            }
-                        })
-                    }).then(() => response.json());
+                    // Store the response to process later
+                    const formspreePromise = response.json();
+                    
+                    // 3. Try to send to Facebook CAPI via Vercel function
+                    // This is wrapped in a try-catch to ensure form submission works
+                    // even if the API endpoint isn't available during development
+                    try {
+                        fetch('/api/facebook-conversion', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({
+                                event_name: 'CompleteRegistration',
+                                user_data: {
+                                    email: formDataObject.email || '',
+                                    name: formDataObject.name || ''
+                                }
+                            })
+                        }).catch(err => {
+                            console.log('CAPI call failed, but form submission will continue', err);
+                        });
+                    } catch (err) {
+                        console.log('Error attempting CAPI call, but form submission will continue', err);
+                    }
+                    
+                    // Return the original response to continue processing
+                    return formspreePromise;
                 }
                 throw new Error('Network response was not ok.');
             })
             .then(data => {
                 console.log('Form submitted successfully', data);
+                
+                // Hide the hero and introduction sections
+                document.querySelector('.application-hero').style.display = 'none';
+                document.querySelector('.application-intro').style.display = 'none';
                 
                 // Hide form
                 document.querySelector('.application-form').classList.add('hidden');
