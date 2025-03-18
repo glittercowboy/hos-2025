@@ -286,6 +286,23 @@ function validateSection(sectionNumber) {
             field.parentNode.appendChild(errorMessage);
         }
         
+        // Email validation for email field
+        if (field.type === 'email' && field.value.trim()) {
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(field.value.trim())) {
+                isValid = false;
+                
+                // Add invalid class
+                field.classList.add('invalid');
+                
+                // Add error message
+                const errorMessage = document.createElement('div');
+                errorMessage.className = 'error-message';
+                errorMessage.textContent = 'Please enter a valid email address';
+                field.parentNode.appendChild(errorMessage);
+            }
+        }
+        
         // Special validation for checkbox
         if (field.type === 'checkbox' && !field.checked) {
             isValid = false;

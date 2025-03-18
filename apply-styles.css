@@ -202,6 +202,21 @@ button:disabled:hover {
     font-size: 0.85em;
     margin-top: 5px;
     font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    padding: 3px 0;
+    animation: errorPulse 0.5s ease-in-out;
+}
+
+@keyframes errorPulse {
+    0% { opacity: 0; transform: translateY(-5px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Style for invalid fields */
+.invalid {
+    border-color: #e2725b !important;
+    box-shadow: 0 0 0 1px #e2725b !important;
+    background-color: rgba(226, 114, 91, 0.05) !important;
 }
 
 .submission-error {
