@@ -555,7 +555,12 @@ section {
 
 .streaming-button i {
     font-size: 1.4em;
-    color: var(--color-black);
+    color: var(--color-white) !important;
+}
+
+/* Ensure social media icons in guest teacher section are white */
+.section-dark .streaming-button i {
+    color: var(--color-white) !important;
 }
 
 .spotify-button, .apple-button {
