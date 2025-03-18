@@ -145,8 +145,61 @@ html, body {
     
     /* Consistent section spacing */
     section {
-        padding-top: 50px !important;
-        padding-bottom: 50px !important;
+        padding-top: 40px !important;
+        padding-bottom: 40px !important;
+    }
+    
+    /* Consistent heading spacing */
+    section h2 {
+        margin-top: 0 !important;
+        margin-bottom: 30px !important;
+    }
+    
+    /* Consistent spacing between sections */
+    section + section {
+        margin-top: 0 !important;
+    }
+    
+    /* Fix specific section spacing issues */
+    .testimonials-1 h2,
+    .testimonials-2 h2,
+    .problem h2,
+    .solution h2,
+    .about h2,
+    .guest-teachers h2,
+    .syllabus h2,
+    .structure h2,
+    .tenets h2,
+    .pricing h2,
+    .application h2,
+    .faq h2,
+    .final-note h3 {
+        margin-top: 0 !important;
+        margin-bottom: 25px !important;
+    }
+    
+    /* Fix spacing below final content in sections */
+    section > .container > *:last-child {
+        margin-bottom: 0 !important;
+    }
+    
+    /* Fix specific spacing in TRANSFORMATIONS section */
+    .testimonials-1 .container {
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+    }
+    
+    .testimonials-1 .container > div[style*="margin-bottom: 60px"] {
+        margin-bottom: 30px !important;
+    }
+    
+    .testimonials-1 .container > div[style*="margin-top: 60px"] {
+        margin-top: 0 !important;
+    }
+    
+    /* Fix spacing in WHAT I WANT FOR YOU section */
+    .desires-struggles h2 {
+        margin-top: 0 !important;
     }
     
     /* Adjust all inline paddings */
