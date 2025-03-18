@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://heart-of-sound-course.com/sitemap.xml 
