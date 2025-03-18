@@ -11,6 +11,13 @@ It complements the main styles.css file.
     min-height: 60vh; /* Shorter than the main hero */
 }
 
+/* Reduced height hero for application page */
+.application-hero.reduced-height {
+    min-height: 40vh; /* Even shorter for application page */
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
 /* Application Progress Bar */
 .application-progress-container {
     margin: 40px 0;

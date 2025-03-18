@@ -37,8 +37,8 @@
     <link rel="stylesheet" href="apply-styles.css" />
   </head>
   <body>
-    <!-- Header Section -->
-    <section class="hero application-hero">
+    <!-- Header Section - Reduced height -->
+    <section class="hero application-hero reduced-height">
       <div class="container width-12">
         <h5 style="font-weight: 200; color: white">TÂCHES PRESENTS:</h5>
         <h1
@@ -56,21 +56,12 @@
           style="
             font-family: 'Poppins', sans-serif;
             font-weight: 200;
-            margin: 20px;
+            margin: 15px;
             letter-spacing: 0.1em;
           "
         >
           APPLICATION FORM
         </h4>
-
-        <div
-          style="
-            width: 240px;
-            height: 1px;
-            border-top: 2px dotted rgba(255, 255, 255, 0.6);
-            margin: 20px auto;
-          "
-        ></div>
 
         <p style="font-weight: 400">
           4 JUNE - 20 AUGUST 2025 | LIMITED TO 20 PRODUCERS
@@ -83,8 +74,7 @@
     <!-- Application Introduction -->
     <section class="application-intro section-light">
       <div class="container width-8">
-        <h2>BEGIN YOUR JOURNEY</h2>
-        <p class="drop-cap">
+        <p>
           This application is the first step in our conversation. I'm not looking for technical perfection or impressive credentials—I'm interested in understanding who you are as an artist and what transformation you're seeking. This is about finding alignment between what you need and what I can offer, not about judging your worthiness.
         </p>
         <p>
@@ -117,12 +107,8 @@
               <input type="email" id="email" name="email" required>
             </div>
             <div class="form-group">
-              <label for="location">Location/Time Zone <span class="required">*</span></label>
-              <input type="text" id="location" name="location" required>
-            </div>
-            <div class="form-group">
-              <label for="pronouns">Preferred Name/Pronouns (Optional)</label>
-              <input type="text" id="pronouns" name="pronouns">
+              <label for="location">Your Location & Time Zone <span class="required">*</span></label>
+              <input type="text" id="location" name="location" placeholder="e.g., London, UK (GMT)" required>
             </div>
             <div class="form-group">
               <label for="discovery">How did you discover Heart of Sound? <span class="required">*</span></label>
@@ -249,7 +235,7 @@
               </select>
             </div>
             <div class="form-group">
-              <label for="scheduling">Any scheduling concerns or conflicts with the course dates? (June 4 - August 20, 2025)</label>
+              <label for="scheduling">Any scheduling concerns or conflicts with the course dates? (June 9 - August 25, 2025)</label>
               <textarea id="scheduling" name="scheduling" rows="3"></textarea>
             </div>
             <div class="form-group">

@@ -14,23 +14,61 @@ html, body {
         padding-right: 30px !important;
     }
     
-    /* Fix for TRANSFORMATION header */
+    /* Fix for TRANSFORMATION header - disable hyphenation */
     .transformation-box h5 {
-        word-break: break-word;
+        word-break: normal;
+        hyphens: manual;
     }
     
     /* Fix inconsistent padding in ABOUT TÂCHES section */
     .about div[style*="background-color: rgba(230, 172, 85, 0.03)"] {
-        padding: 30px 20px !important;
+        padding: 30px 25px !important;
+    }
+    
+    /* Disable hyphenation for all headings */
+    h1, h2, h3, h4, h5, h6 {
+        hyphens: manual !important;
+        word-break: normal;
     }
 }
 
 /* Media query for mobile phones */
 @media (max-width: 576px) {
+    /* Hero section typography improvements */
+    .hero h1 {
+        font-size: 3rem !important;
+        line-height: 1 !important;
+        margin-bottom: 15px !important;
+        letter-spacing: -0.5px !important;
+    }
+    
+    .hero h4 {
+        font-size: 0.9rem !important;
+        line-height: 1.5 !important;
+        margin: 15px auto !important;
+        max-width: 90% !important;
+    }
+    
+    .hero h5 {
+        font-size: 0.85rem !important;
+        line-height: 1.5 !important;
+        max-width: 90% !important;
+        margin: 0 auto !important;
+    }
+    
+    /* Reduce space between intro paragraph and WHERE I BEGAN section */
+    .artist-types .container.width-8 {
+        margin-bottom: 0 !important;
+    }
+    
+    .artist-types .container.width-8 h6 {
+        margin-bottom: 40px !important;
+    }
+    
     /* Override inline styles for WHERE I BEGAN and WHERE I AM NOW sections */
     .artist-types .col-6[style*="padding-left: 50px; padding-right: 50px"] {
-        padding-left: 15px !important;
-        padding-right: 15px !important;
+        padding-left: 20px !important;
+        padding-right: 20px !important;
     }
     
     /* Fix for TRANSFORMATION header */
@@ -47,19 +85,91 @@ html, body {
     
     /* Fix inconsistent padding in ABOUT TÂCHES section */
     .about div[style*="background-color: rgba(230, 172, 85, 0.03)"] {
-        padding: 20px 15px !important;
+        padding: 25px 20px !important;
+    }
+    
+    /* Consistent padding for MEET YOUR TEACHER section */
+    .about .container {
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+    }
+    
+    .about div[style*="margin-bottom: 40px"] {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+    
+    .about div[style*="margin-bottom: 25px"] {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+    
+    /* Fix drop cap on mobile */
+    .drop-cap::first-letter {
+        font-size: 2.5em !important;
+        height: 1.2em !important;
+        padding-top: 0.05em !important;
+        margin-right: 0.1em !important;
+    }
+    
+    /* Fix drop cap paragraph indentation */
+    .drop-cap {
+        line-height: 1.6 !important;
+        text-indent: 0 !important;
+    }
+    
+    /* Increase padding for better readability in text sections */
+    .container {
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+    }
+    
+    /* Consistent padding for all sections */
+    section p, section h1, section h2, section h3, section h4, section h5, section h6 {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+    
+    /* Make testimonials padding consistent */
+    .testimonials-1 .card,
+    .testimonials-2 .card {
+        padding: 20px !important;
+    }
+    
+    /* Fix testimonials section spacing */
+    .testimonials-1 .container,
+    .testimonials-2 .container {
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+    }
+    
+    /* Consistent section spacing */
+    section {
+        padding-top: 50px !important;
+        padding-bottom: 50px !important;
     }
     
     /* Adjust all inline paddings */
     [style*="padding-left: 50px"], 
     [style*="padding-right: 50px"] {
-        padding-left: 15px !important;
-        padding-right: 15px !important;
+        padding-left: 20px !important;
+        padding-right: 20px !important;
     }
     
-    /* Fix for long headers that might overflow */
+    /* Disable hyphenation for all headings */
     h1, h2, h3, h4, h5, h6 {
-        word-wrap: break-word;
-        hyphens: auto;
+        hyphens: manual !important;
+        word-break: normal;
+    }
+    
+    /* Adjust card padding for better mobile experience */
+    .card {
+        padding: 20px !important;
+    }
+    
+    /* Fix FAQ section padding */
+    .faq h5, .faq p {
+        padding-left: 20px !important;
+        padding-right: 20px !important;
     }
 }
