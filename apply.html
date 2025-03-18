@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Apply - Heart of Sound Course</title>
+    <!-- Preload critical resources -->
+    <link
+      rel="preload"
+      href="images-optimized/jungle.webp"
+      as="image"
+      type="image/webp"
+    />
+    <!-- Font preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Font display swap for better performance -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
+    />
+    <!-- Fallback for font loading -->
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
+    <!-- Font Awesome for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="apply-styles.css" />
+  </head>
+  <body>
+    <!-- Header Section -->
+    <section class="hero application-hero">
+      <div class="container width-12">
+        <h5 style="font-weight: 200; color: white">TÂCHES PRESENTS:</h5>
+        <h1
+          style="
+            letter-spacing: -0.04em;
+            text-shadow: 0 0 10px rgba(255, 136, 0, 0.15);
+            margin-bottom: -5px;
+            line-height: 0.9;
+          "
+        >
+          HEART<br />OF SOUND
+        </h1>
+
+        <h4
+          style="
+            font-family: 'Poppins', sans-serif;
+            font-weight: 200;
+            margin: 20px;
+            letter-spacing: 0.1em;
+          "
+        >
+          APPLICATION FORM
+        </h4>
+
+        <div
+          style="
+            width: 240px;
+            height: 1px;
+            border-top: 2px dotted rgba(255, 255, 255, 0.6);
+            margin: 20px auto;
+          "
+        ></div>
+
+        <p style="font-weight: 400">
+          4 JUNE - 20 AUGUST 2025 | LIMITED TO 20 PRODUCERS
+        </p>
+        
+        <a href="index.html" class="button secondary-button">BACK TO MAIN SITE</a>
+      </div>
+    </section>
+
+    <!-- Application Introduction -->
+    <section class="application-intro section-light">
+      <div class="container width-8">
+        <h2>BEGIN YOUR JOURNEY</h2>
+        <p class="drop-cap">
+          This application is the first step in our conversation. I'm not looking for technical perfection or impressive credentials—I'm interested in understanding who you are as an artist and what transformation you're seeking. This is about finding alignment between what you need and what I can offer, not about judging your worthiness.
+        </p>
+        <p>
+          The application takes approximately 15-20 minutes to complete. You can save your progress and return later if needed. I personally review every application because I genuinely want to understand where you are in your journey.
+        </p>
+        <div class="application-progress-container">
+          <div class="application-progress-bar">
+            <div class="application-progress" id="application-progress"></div>
+          </div>
+          <div class="application-progress-text">
+            <span id="current-section">1</span> of <span id="total-sections">6</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Application Form -->
+    <section class="application-form section-light">
+      <div class="container width-8">
+        <form id="application-form" action="https://formspree.io/f/manenlgj" method="POST">
+          <!-- Section 1: Basic Information -->
+          <div class="form-section" id="section-1">
+            <h3>BASIC INFORMATION</h3>
+            <div class="form-group">
+              <label for="name">Full Name <span class="required">*</span></label>
+              <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email <span class="required">*</span></label>
+              <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+              <label for="location">Location/Time Zone <span class="required">*</span></label>
+              <input type="text" id="location" name="location" required>
+            </div>
+            <div class="form-group">
+              <label for="pronouns">Preferred Name/Pronouns (Optional)</label>
+              <input type="text" id="pronouns" name="pronouns">
+            </div>
+            <div class="form-group">
+              <label for="discovery">How did you discover Heart of Sound? <span class="required">*</span></label>
+              <select id="discovery" name="discovery" required>
+                <option value="">Please select</option>
+                <option value="social-media">Social Media</option>
+                <option value="friend">Friend or Colleague</option>
+                <option value="search">Web Search</option>
+                <option value="podcast">Podcast</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="form-group" id="discovery-other-group" style="display: none;">
+              <label for="discovery-other">Please specify:</label>
+              <input type="text" id="discovery-other" name="discovery-other">
+            </div>
+          </div>
+
+          <!-- Section 2: Musical Background -->
+          <div class="form-section hidden" id="section-2">
+            <h3>MUSICAL BACKGROUND</h3>
+            <div class="form-group">
+              <label for="experience">How long have you been producing music? <span class="required">*</span></label>
+              <select id="experience" name="experience" required>
+                <option value="">Please select</option>
+                <option value="less-than-1">Less than 1 year</option>
+                <option value="1-2">1-2 years</option>
+                <option value="3-5">3-5 years</option>
+                <option value="5-10">5-10 years</option>
+                <option value="more-than-10">More than 10 years</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="daw">Primary DAW you use <span class="required">*</span></label>
+              <select id="daw" name="daw" required>
+                <option value="">Please select</option>
+                <option value="ableton">Ableton Live</option>
+                <option value="logic">Logic Pro</option>
+                <option value="fl-studio">FL Studio</option>
+                <option value="pro-tools">Pro Tools</option>
+                <option value="cubase">Cubase</option>
+                <option value="bitwig">Bitwig</option>
+                <option value="reason">Reason</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="form-group" id="daw-other-group" style="display: none;">
+              <label for="daw-other">Please specify:</label>
+              <input type="text" id="daw-other" name="daw-other">
+            </div>
+            <div class="form-group">
+              <label for="music-links">Links to 1-2 tracks you've created (SoundCloud, Dropbox, etc.)</label>
+              <p class="form-hint">This isn't about technical perfection—I'm interested in hearing your authentic expression.</p>
+              <textarea id="music-links" name="music-links" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="influences">Brief description of your musical influences <span class="required">*</span></label>
+              <textarea id="influences" name="influences" rows="4" required></textarea>
+            </div>
+          </div>
+
+          <!-- Section 3: Current Relationship with Music -->
+          <div class="form-section hidden" id="section-3">
+            <h3>CURRENT RELATIONSHIP WITH MUSIC</h3>
+            <div class="form-group">
+              <label for="joy">What aspects of music production bring you the most joy? <span class="required">*</span></label>
+              <textarea id="joy" name="joy" rows="4" required></textarea>
+            </div>
+            <div class="form-group">
+              <label for="challenges">What challenges or blocks do you consistently face? <span class="required">*</span></label>
+              <textarea id="challenges" name="challenges" rows="4" required></textarea>
+            </div>
+            <div class="form-group">
+              <label for="creative-process">How would you describe your current creative process? <span class="required">*</span></label>
+              <textarea id="creative-process" name="creative-process" rows="4" required></textarea>
+            </div>
+            <div class="form-group">
+              <label for="wish-track">What's one track you wish you could have made and why? <span class="required">*</span></label>
+              <textarea id="wish-track" name="wish-track" rows="4" required></textarea>
+            </div>
+          </div>
+
+          <!-- Section 4: Aspirations & Goals -->
+          <div class="form-section hidden" id="section-4">
+            <h3>ASPIRATIONS & GOALS</h3>
+            <div class="form-group">
+              <label for="hopes">What specifically are you hoping to gain from Heart of Sound? <span class="required">*</span></label>
+              <textarea id="hopes" name="hopes" rows="4" required></textarea>
+            </div>
+            <div class="form-group">
+              <label for="ideal-relationship">How would you describe your ideal relationship with music creation? <span class="required">*</span></label>
+              <textarea id="ideal-relationship" name="ideal-relationship" rows="4" required></textarea>
+            </div>
+            <div class="form-group">
+              <label for="success">What would "success" look like for you 6 months after completing the course? <span class="required">*</span></label>
+              <textarea id="success" name="success" rows="4" required></textarea>
+            </div>
+            <div class="form-group">
+              <label for="program-preference">Are you drawn more to the Group or Premium experience, and why? <span class="required">*</span></label>
+              <textarea id="program-preference" name="program-preference" rows="4" required></textarea>
+            </div>
+          </div>
+
+          <!-- Section 5: Practical Considerations -->
+          <div class="form-section hidden" id="section-5">
+            <h3>PRACTICAL CONSIDERATIONS</h3>
+            <div class="form-group">
+              <label for="program-option">Which program option interests you? <span class="required">*</span></label>
+              <select id="program-option" name="program-option" required>
+                <option value="">Please select</option>
+                <option value="group">Group Experience ($4,000)</option>
+                <option value="premium">Premium Experience ($5,500)</option>
+                <option value="undecided">Still deciding</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="payment-preference">Payment preference <span class="required">*</span></label>
+              <select id="payment-preference" name="payment-preference" required>
+                <option value="">Please select</option>
+                <option value="full">Full payment</option>
+                <option value="3-installments">3 monthly installments</option>
+                <option value="6-installments">6 monthly installments</option>
+                <option value="undecided">Still deciding</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="scheduling">Any scheduling concerns or conflicts with the course dates? (June 4 - August 20, 2025)</label>
+              <textarea id="scheduling" name="scheduling" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="questions">Any questions you have before potentially moving forward?</label>
+              <textarea id="questions" name="questions" rows="4"></textarea>
+            </div>
+          </div>
+
+          <!-- Section 6: Final Open Question -->
+          <div class="form-section hidden" id="section-6">
+            <h3>FINAL THOUGHTS</h3>
+            <div class="form-group">
+              <label for="anything-else">Is there anything else you'd like to share about yourself or your music journey?</label>
+              <p class="form-hint">This is an open space for you to share anything you feel is important for me to know.</p>
+              <textarea id="anything-else" name="anything-else" rows="6"></textarea>
+            </div>
+            <div class="form-group">
+              <div class="checkbox-container">
+                <input type="checkbox" id="consent" name="consent" required>
+                <label for="consent">I understand that submitting this application does not guarantee acceptance, and that TÂCHES will review my application and contact me within two weeks. <span class="required">*</span></label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Navigation Buttons -->
+          <div class="form-navigation">
+            <button type="button" id="prev-button" class="button secondary-button" disabled>PREVIOUS</button>
+            <button type="button" id="save-button" class="button tertiary-button">SAVE PROGRESS</button>
+            <button type="button" id="next-button" class="button">NEXT</button>
+            <button type="submit" id="submit-button" class="button" style="display: none;">SUBMIT APPLICATION</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- Thank You Section (Hidden initially) -->
+    <section class="thank-you section-accent hidden" id="thank-you-section">
+      <div class="container width-8">
+        <div style="text-align: center;">
+          <img src="images-optimized/cowboy.webp" alt="Heart of Sound" style="max-width: 30%; margin: 0 auto 40px;">
+        </div>
+        <h2>THANK YOU FOR APPLYING</h2>
+        <p>
+          I appreciate you taking the time to share your journey with me. I personally review every application because I genuinely want to understand where you are in your creative path.
+        </p>
+        <p>
+          Within two weeks, you'll receive an email from me about next steps. If it seems like we're a good fit, I'll invite you to a 30-minute discovery call where we can connect more deeply about your goals and how Heart of Sound might support your evolution as an artist.
+        </p>
+        <p>
+          In the meantime, if you have any questions, feel free to reach out to <strong>howdy@taches-teaches.com</strong>.
+        </p>
+        <div style="text-align: center; margin-top: 40px;">
+          <a href="index.html" class="button">RETURN TO MAIN SITE</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container width-12">
+        <img src="images-optimized/ttlogo.webp" alt="TÂCHES TEACHES Logo" />
+        <p>
+          Contact: howdy@taches-teaches.com<br />
+          © 2025 TÂCHES TEACHES. All rights reserved.
+        </p>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="apply.js"></script>
+  </body>
+</html>
