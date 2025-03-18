@@ -867,6 +867,13 @@ MEDIA QUERIES
 ========================================
 */
 
+/* Fix horizontal scrolling on all devices */
+html, body {
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
+}
+
 /* Tablets */
 @media (max-width: 992px) {
     :root {
@@ -883,6 +890,26 @@ MEDIA QUERIES
 
     section {
         padding: var(--spacing-lg) 0;
+    }
+    
+    /* Reduce padding for WHERE I BEGAN and WHERE I AM NOW sections */
+    .artist-types .col-6 {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+    
+    /* Ensure TRANSFORMATION header fits on screen */
+    .transformation-box h5 {
+        font-size: 1rem;
+        word-wrap: break-word;
+        hyphens: auto;
+    }
+    
+    /* Fix inconsistent padding in ABOUT TÂCHES section */
+    .about .drop-cap, 
+    .about p {
+        padding-left: 20px;
+        padding-right: 20px;
     }
 }
 
@@ -910,6 +937,55 @@ MEDIA QUERIES
 
     .button {
         padding: 10px 20px;
+    }
+    
+    /* Further reduce padding for WHERE I BEGAN and WHERE I AM NOW sections on mobile */
+    .artist-types .col-6 {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    
+    /* Override inline styles for WHERE I BEGAN and WHERE I AM NOW sections */
+    .artist-types .col-6[style*="padding-left: 50px; padding-right: 50px"] {
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+    }
+    
+    /* Ensure TRANSFORMATION header fits on screen */
+    .transformation-box h5 {
+        font-size: 0.9rem;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .transformation-box .icon-container {
+        margin-bottom: 10px;
+    }
+    
+    /* Fix inconsistent padding in ABOUT TÂCHES section */
+    .about .drop-cap, 
+    .about p {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    
+    /* Consistent padding for all sections */
+    .container {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    
+    /* Adjust card padding for better mobile experience */
+    .card {
+        padding: 15px;
+    }
+    
+    /* Ensure testimonials fit on mobile */
+    .testimonials-1 h2,
+    .testimonials-2 h2 {
+        font-size: 1.8rem;
+        word-wrap: break-word;
     }
 }
 
@@ -1040,4 +1116,4 @@ For custom font (Canela Text)
     margin-bottom: 0;
     position: relative;
     z-index: 1;
-} 
+}

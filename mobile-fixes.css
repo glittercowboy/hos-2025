@@ -1,0 +1,65 @@
+/* Mobile optimization fixes */
+
+/* Fix for horizontal scrolling */
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+/* Media query for tablets and smaller */
+@media (max-width: 992px) {
+    /* Override inline styles for WHERE I BEGAN and WHERE I AM NOW sections */
+    .artist-types .col-6[style*="padding-left: 50px; padding-right: 50px"] {
+        padding-left: 30px !important;
+        padding-right: 30px !important;
+    }
+    
+    /* Fix for TRANSFORMATION header */
+    .transformation-box h5 {
+        word-break: break-word;
+    }
+    
+    /* Fix inconsistent padding in ABOUT TÂCHES section */
+    .about div[style*="background-color: rgba(230, 172, 85, 0.03)"] {
+        padding: 30px 20px !important;
+    }
+}
+
+/* Media query for mobile phones */
+@media (max-width: 576px) {
+    /* Override inline styles for WHERE I BEGAN and WHERE I AM NOW sections */
+    .artist-types .col-6[style*="padding-left: 50px; padding-right: 50px"] {
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+    }
+    
+    /* Fix for TRANSFORMATION header */
+    .transformation-box h5 {
+        font-size: 0.9rem;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .transformation-box .icon-container {
+        margin-bottom: 10px;
+    }
+    
+    /* Fix inconsistent padding in ABOUT TÂCHES section */
+    .about div[style*="background-color: rgba(230, 172, 85, 0.03)"] {
+        padding: 20px 15px !important;
+    }
+    
+    /* Adjust all inline paddings */
+    [style*="padding-left: 50px"], 
+    [style*="padding-right: 50px"] {
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+    }
+    
+    /* Fix for long headers that might overflow */
+    h1, h2, h3, h4, h5, h6 {
+        word-wrap: break-word;
+        hyphens: auto;
+    }
+}
