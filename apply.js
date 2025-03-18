@@ -145,6 +145,9 @@ function initApplicationForm() {
             .then(data => {
                 console.log('Form submitted successfully', data);
                 
+                // Track the completed application with Meta Pixel
+                fbq('track', 'CompleteRegistration');
+                
                 // Hide form
                 document.querySelector('.application-form').classList.add('hidden');
                 
