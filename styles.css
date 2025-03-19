@@ -411,11 +411,11 @@ section {
 }
 
 .testimonials-2 h3 {
-    color: var(--color-white); /* Make person's name white */
+    color: var(--color-black); /* Make person's name white */
 }
 
 .testimonials-2 h4:not(.artist-name) {
-    color: var(--color-white); /* Make regular h4 elements white */
+    color: var(--color-black); /* Make regular h4 elements white */
 }
 
 .testimonials-2 .artist-name {
