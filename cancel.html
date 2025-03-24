@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Cancelled - Heart of Sound Course</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="payment-styles.css">
+    <style>
+        /* Cancel Page Specific Styles */
+        .cancel-container {
+            max-width: 800px;
+            margin: 80px auto;
+            padding: 40px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        
+        .cancel-icon {
+            color: #f44336;
+            font-size: 5rem;
+            margin-bottom: 20px;
+        }
+        
+        .cancel-icon svg {
+            width: 80px;
+            height: 80px;
+        }
+        
+        .cancel-title {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+        
+        .cancel-message {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            line-height: 1.6;
+            color: #555;
+        }
+        
+        .buttons-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .return-button {
+            display: inline-block;
+            background-color: var(--color-accent, #e6ac55);
+            color: var(--color-black, #1d1d1d);
+            text-decoration: none;
+            padding: 12px 30px;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .return-button:hover {
+            background-color: var(--color-accent-hover, #edb45f);
+            transform: translateY(-2px);
+        }
+        
+        .home-button {
+            display: inline-block;
+            background-color: transparent;
+            color: #555;
+            text-decoration: none;
+            padding: 12px 30px;
+            border-radius: 4px;
+            font-weight: bold;
+            border: 1px solid #ddd;
+            transition: all 0.3s ease;
+        }
+        
+        .home-button:hover {
+            background-color: #f5f5f5;
+        }
+    </style>
+</head>
+<body>
+    <div class="cancel-container">
+        <div class="cancel-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M0 0h24v24H0V0z" fill="none"/>
+                <path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm3.59-13L12 10.59 8.41 7 7 8.41 10.59 12 7 15.59 8.41 17 12 13.41 15.59 17 17 15.59 13.41 12 17 8.41z"/>
+            </svg>
+        </div>
+        
+        <h1 class="cancel-title">Payment Cancelled</h1>
+        
+        <div class="cancel-message">
+            <p>Your payment process for the Heart of Sound Course has been cancelled.</p>
+            <p>If you experienced any issues or have questions, please contact us at <a href="mailto:support@heartofsound.com">support@heartofsound.com</a>.</p>
+            <p>You can return to the payment page to try again, or visit our homepage for more information.</p>
+        </div>
+        
+        <div class="buttons-container">
+            <a href="payments.html" class="return-button">Return to Payment</a>
+            <a href="index.html" class="home-button">Go to Homepage</a>
+        </div>
+    </div>
+</body>
+</html> 

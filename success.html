@@ -5,27 +5,87 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Payment Successful - Heart of Sound Course</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="payment-styles.css">
     <style>
+        /* Success Page Specific Styles */
         .success-container {
             max-width: 800px;
-            margin: 100px auto;
+            margin: 80px auto;
+            padding: 40px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
             text-align: center;
-            padding: var(--spacing-md);
         }
-
+        
         .success-icon {
-            color: var(--color-accent);
-            font-size: 64px;
-            margin-bottom: var(--spacing-md);
+            color: #4CAF50;
+            font-size: 5rem;
+            margin-bottom: 20px;
+        }
+        
+        .success-icon svg {
+            width: 80px;
+            height: 80px;
+        }
+        
+        .success-title {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+        
+        .success-message {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            line-height: 1.6;
+            color: #555;
+        }
+        
+        .home-button {
+            display: inline-block;
+            background-color: var(--color-accent, #e6ac55);
+            color: var(--color-black, #1d1d1d);
+            text-decoration: none;
+            padding: 12px 30px;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .home-button:hover {
+            background-color: var(--color-accent-hover, #edb45f);
+            transform: translateY(-2px);
         }
     </style>
 </head>
 <body>
     <div class="success-container">
-        <div class="success-icon">✓</div>
-        <h1>Payment Successful!</h1>
-        <p>Thank you for enrolling in the Heart of Sound Course. You will receive a confirmation email shortly with further instructions.</p>
-        <p>If you have any questions, please don't hesitate to reach out.</p>
+        <div class="success-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M0 0h24v24H0V0z" fill="none"/>
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm4.59-12.42L10 14.17l-2.59-2.58L6 13l4 4 8-8z"/>
+            </svg>
+        </div>
+        
+        <h1 class="success-title">Payment Successful!</h1>
+        
+        <div class="success-message">
+            <p>Thank you for enrolling in the Heart of Sound Course!</p>
+            <p>Your payment has been processed successfully. You will receive a confirmation email shortly with all the details about your enrollment.</p>
+            <p>If you have any questions, please contact us at <a href="mailto:support@heartofsound.com">support@heartofsound.com</a>.</p>
+        </div>
+        
+        <a href="index.html" class="home-button">Return to Homepage</a>
     </div>
+
+    <script>
+        // Get the session_id from the URL if needed for verification
+        const urlParams = new URLSearchParams(window.location.search);
+        const sessionId = urlParams.get('session_id');
+        
+        // You can use sessionId to verify the payment status with your backend if needed
+        console.log('Payment session ID:', sessionId);
+    </script>
 </body>
 </html> 
