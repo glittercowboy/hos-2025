@@ -1,0 +1,84 @@
+/* Payment page specific styles */
+.payment-option-card {
+    background: var(--color-white);
+    border-radius: 8px;
+    padding: var(--spacing-md);
+    margin: var(--spacing-sm) 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.payment-option-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.payment-option-card h3 {
+    color: var(--color-black);
+    margin-bottom: var(--spacing-xs);
+}
+
+.payment-option-card .price {
+    font-size: var(--font-size-h3);
+    color: var(--color-accent);
+    margin: var(--spacing-sm) 0;
+    font-weight: bold;
+}
+
+.payment-option-card .installment-note {
+    font-size: var(--font-size-small);
+    color: var(--color-secondary);
+    margin-bottom: var(--spacing-sm);
+}
+
+.payment-options-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--spacing-lg) var(--spacing-md);
+}
+
+.payment-type-header {
+    text-align: center;
+    margin-bottom: var(--spacing-md);
+    padding-top: var(--spacing-md);
+    border-top: 2px solid var(--color-accent);
+}
+
+.payment-type-header:first-child {
+    border-top: none;
+    padding-top: 0;
+}
+
+.stripe-button {
+    background: var(--color-accent);
+    color: var(--color-white);
+    border: none;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: 4px;
+    font-size: var(--font-size-base);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    margin-top: var(--spacing-sm);
+}
+
+.stripe-button:hover {
+    background: var(--color-accent-hover);
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .payment-options-container {
+        padding: var(--spacing-md) var(--spacing-sm);
+    }
+}
+
+@media (max-width: 576px) {
+    .payment-option-card {
+        padding: var(--spacing-sm);
+    }
+    
+    .payment-option-card .price {
+        font-size: var(--font-size-h4);
+    }
+} 

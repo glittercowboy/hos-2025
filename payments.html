@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart of Sound Course - Payment Options</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="payment-styles.css">
+    <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body>
+    <div class="payment-options-container">
+        <h1>Heart of Sound Course Payment Options</h1>
+        <p>Select your preferred payment option below to complete your enrollment.</p>
+
+        <!-- Group Offering -->
+        <div class="payment-type-header">
+            <h2>Group Offering</h2>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <div class="payment-option-card">
+                    <h3>Single Payment</h3>
+                    <div class="price">$4,000</div>
+                    <p>Complete payment in one installment</p>
+                    <button class="stripe-button" data-price-id="group-single">Pay Now</button>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="payment-option-card">
+                    <h3>3 Monthly Payments</h3>
+                    <div class="price">$1,360</div>
+                    <p class="installment-note">3 monthly payments of $1,360 (total $4,080)</p>
+                    <p>Your card will be charged $1,360 today and for 2 more months.</p>
+                    <button class="stripe-button" data-price-id="group-three">Set Up Payments</button>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="payment-option-card">
+                    <h3>6 Monthly Payments</h3>
+                    <div class="price">$685</div>
+                    <p class="installment-note">6 monthly payments of $685 (total $4,110)</p>
+                    <p>Your card will be charged $685 today and for 5 more months.</p>
+                    <button class="stripe-button" data-price-id="group-six">Set Up Payments</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Premium Offering -->
+        <div class="payment-type-header">
+            <h2>Premium Offering</h2>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <div class="payment-option-card">
+                    <h3>Single Payment</h3>
+                    <div class="price">$5,500</div>
+                    <p>Complete payment in one installment</p>
+                    <button class="stripe-button" data-price-id="premium-single">Pay Now</button>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="payment-option-card">
+                    <h3>3 Monthly Payments</h3>
+                    <div class="price">$1,860</div>
+                    <p class="installment-note">3 monthly payments of $1,860 (total $5,580)</p>
+                    <p>Your card will be charged $1,860 today and for 2 more months.</p>
+                    <button class="stripe-button" data-price-id="premium-three">Set Up Payments</button>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="payment-option-card">
+                    <h3>6 Monthly Payments</h3>
+                    <div class="price">$935</div>
+                    <p class="installment-note">6 monthly payments of $935 (total $5,610)</p>
+                    <p>Your card will be charged $935 today and for 5 more months.</p>
+                    <button class="stripe-button" data-price-id="premium-six">Set Up Payments</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // This is your Stripe publishable key
+        const stripe = Stripe('pk_test_51R5rG7K5DsdBdIvwf73Qfe0O98wnMhvPE4SkxyICCv1irOvENwOmccYFw7fQlaw5PNvswlbfTkP2BZSkkOrRWl4500KQI25Xwv');
+
+        // Add click handlers to all payment buttons
+        document.querySelectorAll('.stripe-button').forEach(button => {
+            button.addEventListener('click', async (e) => {
+                try {
+                    // Disable the button to prevent double clicks
+                    button.disabled = true;
+                    
+                    const priceId = e.target.dataset.priceId;
+                    
+                    // Call your backend to create a Checkout Session
+                    const response = await fetch('/api/create-checkout-session', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            priceId: priceId
+                        }),
+                    });
+
+                    if (!response.ok) {
+                        const errorData = await response.json();
+                        throw new Error(errorData.error || 'Something went wrong with the payment setup');
+                    }
+
+                    const session = await response.json();
+
+                    if (!session || !session.id) {
+                        throw new Error('Invalid session response from server');
+                    }
+
+                    // Redirect to Stripe Checkout
+                    const result = await stripe.redirectToCheckout({
+                        sessionId: session.id,
+                    });
+
+                    if (result.error) {
+                        throw new Error(result.error.message);
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert(error.message || 'Something went wrong. Please try again.');
+                } finally {
+                    // Re-enable the button
+                    button.disabled = false;
+                }
+            });
+        });
+    </script>
+</body>
+</html> 
