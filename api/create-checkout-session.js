@@ -11,6 +11,16 @@ const PRICE_MAP = {
     'premium-six': process.env.STRIPE_PRICE_PREMIUM_SIX ? process.env.STRIPE_PRICE_PREMIUM_SIX.split('#')[0].trim() : ''
 };
 
+// Add reverse mapping for direct price IDs
+const REVERSE_PRICE_MAP = {
+    [process.env.STRIPE_PRICE_GROUP_SINGLE?.split('#')[0].trim()]: 'group-single',
+    [process.env.STRIPE_PRICE_GROUP_THREE?.split('#')[0].trim()]: 'group-three',
+    [process.env.STRIPE_PRICE_GROUP_SIX?.split('#')[0].trim()]: 'group-six',
+    [process.env.STRIPE_PRICE_PREMIUM_SINGLE?.split('#')[0].trim()]: 'premium-single',
+    [process.env.STRIPE_PRICE_PREMIUM_THREE?.split('#')[0].trim()]: 'premium-three',
+    [process.env.STRIPE_PRICE_PREMIUM_SIX?.split('#')[0].trim()]: 'premium-six'
+};
+
 // Payment plan details
 const PAYMENT_PLANS = {
     'group-three': { months: 3, description: 'Group 3-Month Plan' },
@@ -52,13 +62,22 @@ module.exports = async (req, res) => {
         const { priceId } = req.body || {};
         console.log('Requested price ID:', priceId);
 
-        if (!priceId || !PRICE_MAP[priceId]) {
-            console.error('Invalid price ID:', priceId);
-            return res.status(400).json({ error: 'Invalid price ID' });
+        // Check if this is a direct Stripe price ID
+        let stripePriceId = priceId;
+        let planKey = REVERSE_PRICE_MAP[priceId];
+        
+        // If not a direct price ID, use the friendly name mapping
+        if (!planKey) {
+            if (!PRICE_MAP[priceId]) {
+                console.error('Invalid price ID:', priceId);
+                return res.status(400).json({ error: 'Invalid price ID' });
+            }
+            stripePriceId = PRICE_MAP[priceId];
+            planKey = priceId;
         }
-
-        const stripePriceId = PRICE_MAP[priceId];
-        console.log('Using Stripe price ID (cleaned):', stripePriceId);
+        
+        console.log('Using Stripe price ID:', stripePriceId);
+        console.log('Plan key for metadata:', planKey);
         
         // Validate that we have a valid price ID
         if (!stripePriceId || stripePriceId.trim() === '') {
@@ -66,7 +85,7 @@ module.exports = async (req, res) => {
             return res.status(500).json({ error: 'Configuration error - invalid price ID' });
         }
         
-        const isSubscription = priceId.includes('three') || priceId.includes('six');
+        const isSubscription = planKey.includes('three') || planKey.includes('six');
         
         // Common checkout session parameters
         const sessionParams = {
@@ -78,26 +97,26 @@ module.exports = async (req, res) => {
                 },
             ],
             mode: isSubscription ? 'subscription' : 'payment',
-            success_url: `${req.headers.origin}/success.html?session_id={CHECKOUT_SESSION_ID}&priceId=${priceId}`,
+            success_url: `${req.headers.origin}/success.html?session_id={CHECKOUT_SESSION_ID}&priceId=${planKey}`,
             cancel_url: `${req.headers.origin}/cancel.html`,
         };
 
         console.log('Creating session with params:', JSON.stringify(sessionParams, null, 2));
 
         // For subscription plans, add metadata about plan duration
-        if (isSubscription && PAYMENT_PLANS[priceId]) {
-            console.log('Adding subscription data for:', priceId);
+        if (isSubscription && PAYMENT_PLANS[planKey]) {
+            console.log('Adding subscription data for:', planKey);
             // Add metadata to track the subscription limit
             sessionParams.subscription_data = {
                 metadata: {
-                    payment_limit: PAYMENT_PLANS[priceId].months,
-                    plan_type: PAYMENT_PLANS[priceId].description
+                    payment_limit: PAYMENT_PLANS[planKey].months,
+                    plan_type: PAYMENT_PLANS[planKey].description
                 }
             };
             
             // Instead of using cancel_at, we'll set up a webhook to cancel
             // after the specified number of payments in our Stripe dashboard
-            console.log('Subscription will be limited to', PAYMENT_PLANS[priceId].months, 'payments');
+            console.log('Subscription will be limited to', PAYMENT_PLANS[planKey].months, 'payments');
         }
 
         // Create Checkout Session
