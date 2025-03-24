@@ -1,6 +1,166 @@
+/* Add explicit font-face declarations at the top */
+@font-face {
+    font-family: 'Canela Text';
+    src: url('/fonts/Canela Text Family/CanelaText-Regular-Trial.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Canela Text';
+    src: url('/fonts/Canela Text Family/CanelaText-Bold-Trial.otf') format('opentype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+:root {
+    /* 
+    COLOR VARIABLES
+    Change these values to update colors across the entire site.
+    */
+    --color-black: #1d1d1d;
+    --color-white: #efefef;
+    --color-accent: #e6ac55;
+    --color-accent-hover: #edb45f;
+    --color-secondary: #35482a;
+    --color-tertiary: #e2725b;
+
+     /* 
+    TYPOGRAPHY VARIABLES
+    Change these values to update font sizes across the entire site.
+    Base font size is 16px, and all other sizes use the major third scale (1.25).
+    */
+    --font-size-base: 20px;
+    --font-size-ratio: 1.3; /* Major third ratio */
+    
+    /* Font size calculations using the scale */
+    --font-size-small: calc(var(--font-size-base) / var(--font-size-ratio));
+    --font-size-h5: calc(var(--font-size-base) * var(--font-size-ratio));
+    --font-size-h4: calc(var(--font-size-base) * var(--font-size-ratio) * var(--font-size-ratio));
+    --font-size-h3: calc(var(--font-size-base) * var(--font-size-ratio) * var(--font-size-ratio) * var(--font-size-ratio));
+    --font-size-h2: calc(var(--font-size-base) * var(--font-size-ratio) * var(--font-size-ratio) * var(--font-size-ratio) * var(--font-size-ratio));
+    --font-size-h1: calc(var(--font-size-base) * var(--font-size-ratio) * var(--font-size-ratio) * var(--font-size-ratio) * var(--font-size-ratio) * var(--font-size-ratio));
+    --font-size-hero: calc(var(--font-size-h1) * 1.75); /* Special size for hero title - 50% larger than h1 */
+
+    /* 
+    SPACING VARIABLES
+    Change these to adjust spacing across the entire site.
+    */
+    --spacing-xs: 10px;
+    --spacing-sm: 20px;
+    --spacing-md: 40px;
+    --spacing-lg: 60px;
+    --spacing-xl: 100px;
+
+    /* 
+    LAYOUT VARIABLES
+    Change these to adjust the grid layout.
+    */
+    --max-site-width: 1440px; /* Maximum width of the entire site */
+    --block-width: calc(var(--max-site-width) / 12); /* Width of a single block */
+    --container-width-12: var(--max-site-width); /* 12 blocks wide (full width) */
+    --container-width-10: calc(var(--block-width) * 10); /* 10 blocks wide */
+    --container-width-8: calc(var(--block-width) * 8); /* 8 blocks wide */
+    --container-width-6: calc(var(--block-width) * 6); /* 6 blocks wide */
+    --card-padding: 20px;
+
+}    
+
+/* 
+========================================
+RESET & BASE STYLES
+========================================
+*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Crimson Text', sans-serif;
+    font-size: var(--font-size-base);
+    line-height: 1.6;
+    color: var(--color-black);
+    background-color: var(--color-white);
+}
+
+/* 
+========================================
+TYPOGRAPHY
+========================================
+*/
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: var(--spacing-sm);
+}
+
+h1 {
+    font-family: 'Canela Text', serif;
+    font-size: var(--font-size-h1);
+}
+
+h2 {
+    font-family: 'Canela Text', serif;
+    font-size: var(--font-size-h2);
+}
+
+h3 {
+    font-family: 'Canela Text', serif;
+    font-size: var(--font-size-h3);
+}
+
+h4 {
+    font-family: 'Canela Text', serif;
+    font-size: var(--font-size-h4);
+}
+
+h5 {
+    font-family: 'Canela Text', serif;
+    font-size: var(--font-size-h5);
+}
+
+h6 {
+    font-family: 'Poppins', sans-serif;
+    font-size: var(--font-size-h6);
+}
+
+p {
+    margin-bottom: var(--spacing-sm);
+}
+
+/* Canela Text class for applying to any element */
+.canela-text {
+    font-family: 'Canela Text', serif;
+}
+
+/* Drop Cap styling */
+.drop-cap {
+    line-height: 2; /* Double line height for all paragraphs with drop caps */
+}
+
+.drop-cap::first-letter {
+    font-family: 'Canela Text', serif;
+    font-size: 4em; /* Size to match the double line height */
+    font-weight: 900;
+    float: left;
+    margin-right: 0.15em; /* Space to the right */
+    line-height: 0.9; /* Tighter line height for better alignment */
+    margin-top: 0; /* Remove top margin */
+    padding-top: 0.1em; /* Padding to align with text top */
+    height: 1.7em; /* Control the height to be exactly 2 lines with line-height: 2 */
+    color: var(--color-accent);
+}
+
 /* Payment page specific styles */
 .payment-option-card {
-    background-color: white;
+    background-color: var(--color-white);
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.05);
     padding: 25px;
@@ -90,17 +250,17 @@
 
 /* Common styles for payment pages */
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Poppins', sans-serif;
     line-height: 1.6;
     color: #333;
-    background-color: #f5f5f5;
+    background-color: var(--color-white);
     margin: 0;
     padding: 0;
 }
 
 h1 {
     text-align: center;
-    color: #2c3e50;
+    color: var(--color-black);
     margin-bottom: 20px;
 }
 
@@ -138,21 +298,23 @@ p {
 /* Stripe button */
 .stripe-button {
     display: inline-block;
-    background-color: #3498db;
-    color: white;
+    background-color: var(--color-accent);
+    color: var(--color-black);
     border: none;
     padding: 12px 25px;
     border-radius: 4px;
     font-size: 16px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, scale 0.3s, translate 0.3s;
     width: 100%;
     max-width: 200px;
     margin-top: 15px;
 }
 
 .stripe-button:hover {
-    background-color: #2980b9;
+    background-color: var(--color-accent-hover);
+    scale: 1.02;
+    translate: 0 -1px;
 }
 
 .stripe-button:disabled {
@@ -178,6 +340,7 @@ p {
 
 /* Content area of the card */
 .card-content {
+    padding: 30px;
     flex-grow: 1;
     display: flex;
     flex-direction: column;

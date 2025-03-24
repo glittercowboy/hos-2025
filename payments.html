@@ -6,8 +6,30 @@
     <meta name="robots" content="noindex, nofollow">
     <title>Heart of Sound Course - Payment Options</title>
     <!-- Preload font files to ensure they load correctly -->
-    <link rel="preload" href="fonts/Canela Text Family/CanelaText-Regular-Trial.otf" as="font" type="font/otf" crossorigin>
-    <link rel="preload" href="fonts/Canela Text Family/CanelaText-Bold-Trial.otf" as="font" type="font/otf" crossorigin>
+    <link rel="preload" href="/fonts/Canela Text Family/CanelaText-Regular-Trial.otf" as="font" type="font/otf" crossorigin>
+    <link rel="preload" href="/fonts/Canela Text Family/CanelaText-Bold-Trial.otf" as="font" type="font/otf" crossorigin>
+    <!-- Font preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Font display swap for better performance -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
+    />
+    <!-- Fallback for font loading -->
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
+    <!-- Font Awesome for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="payment-styles.css">
     <script src="https://js.stripe.com/v3/"></script>
@@ -101,13 +123,14 @@
 </head>
 <body>
     <div class="payment-options-container">
-        <h1>HEART OF SOUND</h1>
-        <h4 style="text-align: center; font-family: 'Poppins', sans-serif;">Course Payment Options</h4>
+        <h1 style="text-align: center; font-family: 'Canela Text', serif;">HEART OF SOUND</h1>
+        <p id="font-test" style="text-align: center; font-family: 'Canela Text', serif; font-size: 18px;">This text should be in Canela Text font</p>
+        <h5 style="text-align: center; font-family: 'Poppins', sans-serif; font-weight: 400;">COURSE PAYMENT OPTIONS</h5>
         <p>Select your preferred payment option below to complete your enrollment.</p>
 
         <!-- Group Offering -->
         <div class="payment-type-header">
-            <h2 style="text-align: center; font-family: 'Poppins', sans-serif;">GROUP OFFERING</h2>
+            <h2 style="text-align: center;">GROUP OFFERING</h2>
         </div>
         <div class="row">
             <div class="col-4">
@@ -211,6 +234,23 @@
     </div>
 
     <script>
+        // Font loading detection
+        document.fonts.ready.then(function() {
+            console.log("All fonts are loaded!");
+            const fontTest = document.getElementById('font-test');
+            if (fontTest) {
+                // Check if Canela Text font is loaded
+                const isCanelaLoaded = document.fonts.check("1em 'Canela Text'");
+                console.log("Canela Text loaded:", isCanelaLoaded);
+                
+                // Visual indicator
+                fontTest.style.color = isCanelaLoaded ? 'green' : 'red';
+                fontTest.textContent = isCanelaLoaded ? 
+                    "Canela Text font loaded successfully!" : 
+                    "Canela Text font failed to load (using fallback)";
+            }
+        });
+
         // This is your Stripe publishable key
         const stripe = Stripe('pk_test_51R5rG7K5DsdBdIvwf73Qfe0O98wnMhvPE4SkxyICCv1irOvENwOmccYFw7fQlaw5PNvswlbfTkP2BZSkkOrRWl4500KQI25Xwv');
 
