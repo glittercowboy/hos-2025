@@ -312,6 +312,81 @@
             background-color: #f5f5f5;
         }
         
+        /* Coupon code styles */
+        .coupon-section {
+            margin: 20px 0 30px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border: 1px solid #eee;
+            border-radius: 4px;
+        }
+        
+        .coupon-section h3 {
+            font-family: 'Canela Text', serif;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .coupon-input-group {
+            display: flex;
+            margin-bottom: 10px;
+        }
+        
+        .coupon-input-group input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px 0 0 4px;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .coupon-button {
+            padding: 10px 15px;
+            background-color: var(--color-black);
+            color: white;
+            border: none;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+        
+        .coupon-button:hover {
+            background-color: var(--color-accent);
+            color: var(--color-black);
+        }
+        
+        #coupon-message {
+            margin: 5px 0;
+            font-size: 0.9rem;
+        }
+        
+        #coupon-message.success {
+            color: green;
+        }
+        
+        #coupon-message.error {
+            color: red;
+        }
+        
+        .coupon-expiry-date {
+            font-size: 0.9rem;
+            font-style: italic;
+            color: #666;
+        }
+        
+        .price-original {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 1.6rem;
+            margin-right: 10px;
+        }
+        
+        .price-discounted {
+            color: green;
+        }
+        
         @media (max-width: 768px) {
             .payment-options .row {
                 flex-direction: column;
@@ -350,6 +425,17 @@
                 <li>Access to exclusive advanced techniques modules</li>
             </ul>
             <p>The Premium Offering provides individualized attention and advanced training to accelerate your progress and master sound techniques more quickly.</p>
+        </div>
+        
+        <!-- Coupon Code Section -->
+        <div class="coupon-section">
+            <h3>Have a coupon code?</h3>
+            <div class="coupon-input-group">
+                <input type="text" id="coupon-code" placeholder="Enter coupon code">
+                <button id="apply-coupon" class="coupon-button">Apply</button>
+            </div>
+            <p id="coupon-message"></p>
+            <p id="coupon-expiry" class="coupon-expiry-date"></p>
         </div>
     </div>
     
@@ -451,6 +537,212 @@
         // This is your Stripe publishable key
         const stripe = Stripe('pk_test_51R5rG7K5DsdBdIvwf73Qfe0O98wnMhvPE4SkxyICCv1irOvENwOmccYFw7fQlaw5PNvswlbfTkP2BZSkkOrRWl4500KQI25Xwv');
 
+        // Coupon functionality
+        const couponInput = document.getElementById('coupon-code');
+        const applyButton = document.getElementById('apply-coupon');
+        const couponMessage = document.getElementById('coupon-message');
+        const couponExpiry = document.getElementById('coupon-expiry');
+        
+        // Original prices
+        const originalPrices = {
+            'single': 5000,
+            'three': 1690,
+            'six': 860
+        };
+        
+        // Available coupons with expiration dates
+        const validCoupons = {
+            'EARLYBIRD25': {
+                discount: 0.25, // 25% off
+                expires: new Date('2025-05-15T23:59:59'), // Example expiration date
+                description: 'Early Bird Discount (25% off)'
+            },
+            'SUMMER500': {
+                discount: 500, // $500 flat discount
+                expires: new Date('2025-06-30T23:59:59'),
+                description: 'Summer Special ($500 off)'
+            }
+        };
+        
+        let activeDiscount = null;
+        
+        // Apply coupon button click handler
+        applyButton.addEventListener('click', () => {
+            const couponCode = couponInput.value.trim().toUpperCase();
+            
+            // Clear previous messages
+            couponMessage.textContent = '';
+            couponMessage.className = '';
+            couponExpiry.textContent = '';
+            
+            // Reset prices if no coupon entered
+            if (!couponCode) {
+                resetPrices();
+                return;
+            }
+            
+            const coupon = validCoupons[couponCode];
+            
+            // Check if coupon exists
+            if (!coupon) {
+                couponMessage.textContent = 'Invalid coupon code';
+                couponMessage.className = 'error';
+                resetPrices();
+                return;
+            }
+            
+            // Check if coupon is expired
+            const now = new Date();
+            if (now > coupon.expires) {
+                couponMessage.textContent = 'This coupon has expired';
+                couponMessage.className = 'error';
+                resetPrices();
+                return;
+            }
+            
+            // Coupon is valid, apply the discount
+            activeDiscount = coupon;
+            
+            // Show success message and expiration
+            couponMessage.textContent = `Coupon applied: ${coupon.description}`;
+            couponMessage.className = 'success';
+            
+            // Format and display expiration date
+            const expiryDate = coupon.expires.toLocaleDateString(undefined, { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            });
+            couponExpiry.textContent = `Valid until: ${expiryDate}`;
+            
+            // Apply discount to all price displays
+            applyDiscount();
+            
+            // Update payment description texts
+            updatePaymentDescriptions();
+        });
+        
+        // Function to apply discount to all prices
+        function applyDiscount() {
+            if (!activeDiscount) return;
+            
+            // Get all price elements
+            const priceElements = document.querySelectorAll('.price');
+            
+            priceElements.forEach(priceEl => {
+                // Get the parent card to determine which payment option
+                const card = priceEl.closest('.payment-card');
+                const header = card.querySelector('.card-header h3').textContent.toLowerCase();
+                
+                let priceType;
+                if (header.includes('single')) {
+                    priceType = 'single';
+                } else if (header.includes('3 monthly')) {
+                    priceType = 'three';
+                } else if (header.includes('6 monthly')) {
+                    priceType = 'six';
+                }
+                
+                const originalPrice = originalPrices[priceType];
+                
+                // Calculate discounted price
+                let discountedPrice;
+                if (typeof activeDiscount.discount === 'number' && activeDiscount.discount < 1) {
+                    // Percentage discount
+                    discountedPrice = Math.round(originalPrice * (1 - activeDiscount.discount));
+                } else {
+                    // Flat discount
+                    discountedPrice = Math.max(0, originalPrice - activeDiscount.discount);
+                }
+                
+                // Clear current content and add original + discounted price
+                priceEl.innerHTML = `<span class="price-original">$${originalPrice}</span><span class="price-discounted">$${discountedPrice}</span>`;
+                
+                // Also update installment note if applicable
+                const installmentNote = card.querySelector('.installment-note');
+                if (installmentNote) {
+                    const noteText = installmentNote.textContent;
+                    if (noteText.includes('monthly payments')) {
+                        const numPayments = priceType === 'three' ? 3 : 6;
+                        const totalOriginal = originalPrice * numPayments;
+                        const totalDiscounted = discountedPrice * numPayments;
+                        installmentNote.textContent = `${numPayments} monthly payments of $${discountedPrice} (total $${totalDiscounted})`;
+                    }
+                }
+                
+                // Update payment details
+                const detailsList = card.querySelector('.payment-details ul');
+                if (detailsList) {
+                    const items = detailsList.querySelectorAll('li');
+                    items.forEach(item => {
+                        const text = item.textContent;
+                        if (text.includes('payment') && text.includes('$')) {
+                            item.textContent = text.replace(/\$\d+/, `$${discountedPrice}`);
+                        }
+                    });
+                }
+            });
+        }
+        
+        // Function to reset prices to original values
+        function resetPrices() {
+            activeDiscount = null;
+            
+            const priceElements = document.querySelectorAll('.price');
+            
+            priceElements.forEach(priceEl => {
+                const card = priceEl.closest('.payment-card');
+                const header = card.querySelector('.card-header h3').textContent.toLowerCase();
+                
+                let priceType;
+                if (header.includes('single')) {
+                    priceType = 'single';
+                } else if (header.includes('3 monthly')) {
+                    priceType = 'three';
+                } else if (header.includes('6 monthly')) {
+                    priceType = 'six';
+                }
+                
+                // Reset to original price
+                priceEl.innerHTML = `$${originalPrices[priceType]}`;
+                
+                // Reset installment note
+                const installmentNote = card.querySelector('.installment-note');
+                if (installmentNote) {
+                    const noteText = installmentNote.textContent;
+                    if (noteText.includes('monthly payments')) {
+                        if (priceType === 'three') {
+                            installmentNote.textContent = '3 monthly payments of $1,690 (total $5,070)';
+                        } else if (priceType === 'six') {
+                            installmentNote.textContent = '6 monthly payments of $860 (total $5,160)';
+                        }
+                    }
+                }
+                
+                // Reset payment details
+                const detailsList = card.querySelector('.payment-details ul');
+                if (detailsList) {
+                    const items = detailsList.querySelectorAll('li');
+                    items.forEach(item => {
+                        const text = item.textContent;
+                        if (text.includes('payment') && text.includes('$')) {
+                            const newText = text.replace(/\$\d+/, `$${originalPrices[priceType]}`);
+                            item.textContent = newText;
+                        }
+                    });
+                }
+            });
+            
+            // Reset payment descriptions
+            updatePaymentDescriptions();
+        }
+        
+        // Function to update modal payment descriptions based on active discount
+        function updatePaymentDescriptions() {
+            // We'll modify this when implementing the discount on the backend
+            // This just updates the visual display for now
+        }
+
         // Modal elements
         const modal = document.getElementById('confirmation-modal');
         const modalDescription = document.getElementById('modal-description');
@@ -476,6 +768,10 @@
                 
                 // Show confirmation with plan details
                 modalDescription.textContent = planDescriptions[currentPriceId] || 'Please confirm your payment.';
+                
+                // If we have an active discount, we could modify the description here
+                // For a complete implementation, we'd need backend code to handle the discount application
+                
                 modal.classList.add('active');
             });
         });
@@ -499,13 +795,15 @@
                 currentButton.disabled = true;
                 
                 // Call your backend to create a Checkout Session
+                // In a real implementation, we would also send the coupon code to the backend
                 const response = await fetch('/api/create-checkout-session', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                        priceId: currentPriceId
+                        priceId: currentPriceId,
+                        couponCode: couponInput.value.trim().toUpperCase() // Send coupon to backend
                     }),
                 });
 

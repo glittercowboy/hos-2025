@@ -29,6 +29,19 @@ const PAYMENT_PLANS = {
     'premium-six': { months: 6, description: 'Premium 6-Month Plan' }
 };
 
+// Valid coupon codes with their Stripe coupon IDs
+// In production, you would likely store these in a database
+const VALID_COUPONS = {
+    'EARLYBIRD25': {
+        stripeId: 'EARLYBIRD25',
+        expires: new Date('2025-05-15T23:59:59')
+    },
+    'SUMMER500': {
+        stripeId: 'SUMMER500',
+        expires: new Date('2025-06-30T23:59:59')
+    }
+};
+
 module.exports = async (req, res) => {
     console.log('API Request received');
 
@@ -58,9 +71,10 @@ module.exports = async (req, res) => {
     }
 
     try {
-        // Safely extract priceId
-        const { priceId } = req.body || {};
+        // Safely extract priceId and couponCode
+        const { priceId, couponCode } = req.body || {};
         console.log('Requested price ID:', priceId);
+        console.log('Coupon code:', couponCode || 'None');
 
         // Check if this is a direct Stripe price ID
         let stripePriceId = priceId;
@@ -99,7 +113,43 @@ module.exports = async (req, res) => {
             mode: isSubscription ? 'subscription' : 'payment',
             success_url: `${req.headers.origin}/success.html?session_id={CHECKOUT_SESSION_ID}&priceId=${planKey}`,
             cancel_url: `${req.headers.origin}/cancel.html`,
+            allow_promotion_codes: true,
         };
+
+        // Handle coupon code if provided
+        if (couponCode) {
+            console.log('Processing coupon code:', couponCode);
+            const coupon = VALID_COUPONS[couponCode];
+            
+            if (coupon) {
+                // Check if coupon is expired
+                const now = new Date();
+                if (now > coupon.expires) {
+                    console.log('Coupon expired:', couponCode);
+                } else {
+                    try {
+                        // Verify the coupon exists in Stripe
+                        console.log('Retrieving coupon from Stripe:', coupon.stripeId);
+                        const stripeCoupon = await stripe.coupons.retrieve(coupon.stripeId);
+                        
+                        if (stripeCoupon && !stripeCoupon.deleted) {
+                            // Add coupon to checkout session
+                            console.log('Applying coupon to checkout session:', stripeCoupon.id);
+                            sessionParams.discounts = [
+                                {
+                                    coupon: stripeCoupon.id,
+                                },
+                            ];
+                        }
+                    } catch (couponError) {
+                        console.error('Error applying coupon:', couponError.message);
+                        // Continue without coupon if there's an error
+                    }
+                }
+            } else {
+                console.log('Invalid coupon code:', couponCode);
+            }
+        }
 
         console.log('Creating session with params:', JSON.stringify(sessionParams, null, 2));
 
