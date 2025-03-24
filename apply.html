@@ -147,17 +147,29 @@
     <!-- Application Introduction -->
     <section class="application-intro section-light">
       <div class="container width-8">
-        <!-- Pricing Banner -->
+        <!-- Combined Pricing and Early Bird Banner -->
         <div style="text-align: center; background-color: rgba(0, 0, 0, 0.08); padding: 20px; border-radius: 4px; margin-bottom: 30px;">
           <h5 style="font-weight: 600; margin-bottom: 10px; color: var(--color-black);">
             COURSE INVESTMENT
           </h5>
-          <p style="font-size: 1.1em; margin-bottom: 5px;">
-            <strong>Group Experience:</strong> $4,000 - Full course curriculum with group support
-          </p>
-          <p style="font-size: 1.1em; margin-bottom: 15px;">
-            <strong>Premium Experience:</strong> $5,000 - Includes 3 additional 1-on-1 sessions with TÂCHES
-          </p>
+          <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; margin-bottom: 10px;">
+            <div>
+              <p style="font-size: 1.1em; margin-bottom: 5px;">
+                <strong>Group Experience:</strong> $4,000
+              </p>
+              <p style="font-size: 0.9em; color: var(--color-tertiary); font-weight: 600;">
+                Early Bird: $3,400 <span style="font-size: 0.8em; font-weight: normal;">(until April 14th)</span>
+              </p>
+            </div>
+            <div>
+              <p style="font-size: 1.1em; margin-bottom: 5px;">
+                <strong>Premium Experience:</strong> $5,000
+              </p>
+              <p style="font-size: 0.9em; color: var(--color-tertiary); font-weight: 600;">
+                Early Bird: $4,250 <span style="font-size: 0.8em; font-weight: normal;">(until April 14th)</span>
+              </p>
+            </div>
+          </div>
           <p style="font-size: 0.9em; margin-bottom: 0;">
             Flexible payment options available (3 or 6 monthly installments)
           </p>
@@ -407,5 +419,64 @@
 
     <script src="script.js"></script>
     <script src="apply.js"></script>
+    
+    <!-- Sticky Early Bird Banner -->
+    <div id="early-bird-banner" class="early-bird-banner">
+      <div class="early-bird-content">
+        <div class="early-bird-text">
+          <span class="early-bird-label">EARLY BIRD: 15% OFF</span>
+          <span class="early-bird-info">Group: $3,400 • Premium: $4,250</span>
+        </div>
+        <div class="early-bird-countdown">
+          <div class="countdown-item">
+            <span id="days" class="countdown-number">0</span>
+            <span class="countdown-label">Days</span>
+          </div>
+          <div class="countdown-item">
+            <span id="hours" class="countdown-number">0</span>
+            <span class="countdown-label">Hours</span>
+          </div>
+          <div class="countdown-item">
+            <span id="minutes" class="countdown-number">0</span>
+            <span class="countdown-label">Mins</span>
+          </div>
+          <div class="countdown-item">
+            <span id="seconds" class="countdown-number">0</span>
+            <span class="countdown-label">Secs</span>
+          </div>
+        </div>
+        <button class="early-bird-close" onclick="document.getElementById('early-bird-banner').style.display='none';">×</button>
+      </div>
+    </div>
+    
+    <script>
+      // Set countdown for early bird banner
+      function updateCountdown() {
+        const deadline = new Date("April 14, 2025 23:59:59").getTime();
+        const now = new Date().getTime();
+        const timeLeft = deadline - now;
+        
+        if (timeLeft <= 0) {
+          document.getElementById('early-bird-banner').style.display = 'none';
+          return;
+        }
+        
+        const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+        
+        document.getElementById('days').innerHTML = days;
+        document.getElementById('hours').innerHTML = hours;
+        document.getElementById('minutes').innerHTML = minutes;
+        document.getElementById('seconds').innerHTML = seconds;
+      }
+      
+      // Initial update and then set interval
+      document.addEventListener("DOMContentLoaded", function() {
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+      });
+    </script>
   </body>
 </html>

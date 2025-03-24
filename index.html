@@ -1510,7 +1510,11 @@
           <div class="col-5">
             <div class="card">
               <h3>GROUP EXPERIENCE</h3>
-              <h3>$4,000</h3>
+              <div style="margin-bottom: 15px;">
+                <span style="text-decoration: line-through; color: rgba(0,0,0,0.6); font-size: 1.6rem;">$4,000</span>
+                <h3 style="display: inline-block; margin-left: 10px; color: var(--color-tertiary);">$3,400</h3>
+                <p style="font-size: 0.8rem; margin: 5px 0 0; text-align: center;">Early Bird Price (Until April 14th)</p>
+              </div>
               <p>
                 A collaborative journey with a community of like-minded
                 producers, guided by my transformative approach to music
@@ -1527,7 +1531,11 @@
           <div class="col-5">
             <div class="card">
               <h3>PREMIUM EXPERIENCE</h3>
-              <h3>$5,000</h3>
+              <div style="margin-bottom: 15px;">
+                <span style="text-decoration: line-through; color: rgba(0,0,0,0.6); font-size: 1.6rem;">$5,000</span>
+                <h3 style="display: inline-block; margin-left: 10px; color: var(--color-tertiary);">$4,250</h3>
+                <p style="font-size: 0.8rem; margin: 5px 0 0; text-align: center;">Early Bird Price (Until April 14th)</p>
+              </div>
               <p>
                 The complete experience with additional personalized 1:1
                 guidance from me to accelerate your transformation.<br /><br />
@@ -1549,41 +1557,21 @@
             I offer flexible payment plans because I believe financial circumstances shouldn't prevent committed artists from accessing this transformation. You can pay in full, or divide the investment into 3 or 6 monthly installments.
           </p>
 
-          <!-- Enhanced pricing details -->
-          <div style="text-align: center; background-color: rgba(0, 0, 0, 0.05); padding: 20px; border-radius: 4px; margin: 30px auto; max-width: 800px;">
-            <h5 style="font-weight: 600; margin-bottom: 15px; color: var(--color-black);">PAYMENT OPTIONS</h5>
-            
-            <div style="display: inline-block; text-align: left; margin: 0 20px 15px;">
-              <p style="font-weight: 600; margin-bottom: 5px; color: var(--color-black);">Group Experience ($4,000)</p>
-              <p style="margin-bottom: 0px;">• Pay in full: $4,000</p>
-              <p style="margin-bottom: 0px;">• 3-month plan: $1,367/month</p>
-              <p style="margin-bottom: 0px;">• 6-month plan: $700/month</p>
-            </div>
-            
-            <div style="display: inline-block; text-align: left; margin: 0 20px 15px;">
-              <p style="font-weight: 600; margin-bottom: 5px; color: var(--color-black);">Premium Experience ($5,000)</p>
-              <p style="margin-bottom: 0px;">• Pay in full: $5,000</p>
-              <p style="margin-bottom: 0px;">• 3-month plan: $1,700/month</p>
-              <p style="margin-bottom: 0px;">• 6-month plan: $867/month</p>
-            </div>
-            
-            <p style="font-size: 0.85em; margin-top: 15px; font-style: italic;">
-              Note: All payment options are discussed after application approval. No payment is required during application.
-            </p>
-          </div>
           
+          
+          <!-- Removing the early bird box from here -->
         </div>
-        <div style="text-align: center; max-width: 85%; margin: 50px auto 0">
-          <p
-            style="
-              font-family: 'Crimson Text', serif;
-              font-size: 1.1em;
-              line-height: 1.8;
-            "
-          >
-            The producers who've joined me consistently report that the transformation in their creative process continues to yield returns years later. Many have shared that the confidence and clarity they developed have led to opportunities, artistic breakthroughs, and creative satisfaction they couldn't have imagined before. The real value isn't measured in the 12 weeks we spend together, but in the lifetime of authentic artistic expression that follows.
-          </p>
-        </div>
+      </div>
+      <div style="text-align: center; max-width: 85%; margin: 50px auto 0">
+        <p
+          style="
+            font-family: 'Crimson Text', serif;
+            font-size: 1.1em;
+            line-height: 1.8;
+          "
+        >
+          The producers who've joined me consistently report that the transformation in their creative process continues to yield returns years later. Many have shared that the confidence and clarity they developed have led to opportunities, artistic breakthroughs, and creative satisfaction they couldn't have imagined before. The real value isn't measured in the 12 weeks we spend together, but in the lifetime of authentic artistic expression that follows.
+        </p>
       </div>
     </section>
 
@@ -1758,7 +1746,63 @@
             }
           });
         }
+        
+        // Set countdown for early bird banner
+        function updateCountdown() {
+          const deadline = new Date("April 14, 2025 23:59:59").getTime();
+          const now = new Date().getTime();
+          const timeLeft = deadline - now;
+          
+          if (timeLeft <= 0) {
+            document.getElementById('early-bird-banner').style.display = 'none';
+            return;
+          }
+          
+          const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+          const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+          const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+          
+          document.getElementById('days').innerHTML = days;
+          document.getElementById('hours').innerHTML = hours;
+          document.getElementById('minutes').innerHTML = minutes;
+          document.getElementById('seconds').innerHTML = seconds;
+        }
+        
+        // Initial update and then set interval
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
       });
     </script>
+    
+    <!-- Sticky Early Bird Banner -->
+    <div id="early-bird-banner" class="early-bird-banner">
+      <div class="early-bird-content">
+        <div class="early-bird-text">
+          <span class="early-bird-label">EARLY BIRD: 15% OFF</span>
+          <span class="early-bird-info">Group: $3,400 • Premium: $4,250</span>
+        </div>
+        <div class="early-bird-countdown">
+          <div class="countdown-item">
+            <span id="days" class="countdown-number">0</span>
+            <span class="countdown-label">Days</span>
+          </div>
+          <div class="countdown-item">
+            <span id="hours" class="countdown-number">0</span>
+            <span class="countdown-label">Hours</span>
+          </div>
+          <div class="countdown-item">
+            <span id="minutes" class="countdown-number">0</span>
+            <span class="countdown-label">Mins</span>
+          </div>
+          <div class="countdown-item">
+            <span id="seconds" class="countdown-number">0</span>
+            <span class="countdown-label">Secs</span>
+          </div>
+        </div>
+        <a href="apply.html" class="early-bird-button">APPLY NOW</a>
+        <button class="early-bird-close" onclick="document.getElementById('early-bird-banner').style.display='none';">×</button>
+      </div>
+    </div>
   </body>
 </html>

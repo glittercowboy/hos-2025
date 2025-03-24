@@ -1122,3 +1122,151 @@ For custom font (Canela Text)
     position: relative;
     z-index: 1;
 }
+
+/* Early Bird Banner */
+.early-bird-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--color-accent);
+  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+  z-index: 9999;
+  transition: all 0.3s ease;
+}
+
+.early-bird-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 30px;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.early-bird-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.early-bird-label {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: var(--color-black);
+  margin-bottom: 2px;
+}
+
+.early-bird-info {
+  font-family: 'Crimson Text', serif;
+  font-size: 0.95rem;
+  color: var(--color-black);
+}
+
+.early-bird-countdown {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.countdown-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 60px;
+}
+
+.countdown-number {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-size: 1.5rem;
+  color: var(--color-black);
+  line-height: 1;
+}
+
+.countdown-label {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.7rem ;
+  color: var(--color-black);
+  text-transform: uppercase;
+}
+
+.early-bird-button {
+  background-color: white;
+  color: var(--color-tertiary);
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 10px 20px;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border: 2px solid white;
+}
+
+.early-bird-button:hover {
+  background-color: transparent;
+  color: white;
+}
+
+.early-bird-close {
+  background: none;
+  border: none;
+  color: var(--color-black);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0 0 0 15px;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+.early-bird-close:hover {
+  opacity: 1;
+}
+
+@media (max-width: 992px) {
+  .early-bird-content {
+    flex-direction: column;
+    padding: 15px;
+    gap: 15px;
+  }
+  
+  .early-bird-text {
+    text-align: center;
+    margin-bottom: 5px;
+  }
+  
+  .early-bird-countdown {
+    margin-bottom: 10px;
+  }
+  
+  .countdown-item {
+    min-width: 50px;
+  }
+  
+  .early-bird-button {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .early-bird-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 0;
+  }
+}
+
+@media (max-width: 576px) {
+  .countdown-item {
+    min-width: 40px;
+  }
+  
+  .countdown-number {
+    font-size: 1.4rem;
+  }
+  
+  .countdown-label {
+    font-size: 0.6rem;
+  }
+}
