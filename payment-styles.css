@@ -1,16 +1,21 @@
 /* Payment page specific styles */
 .payment-option-card {
-    background: var(--color-white);
+    background-color: white;
     border-radius: 8px;
-    padding: var(--spacing-md);
-    margin: var(--spacing-sm) 0;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    padding: 25px;
+    text-align: center;
+    height: 100%;
+    min-height: 350px; /* Set a minimum height for all cards */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .payment-option-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    transform: none; /* Remove hover animation */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05); /* Keep the original shadow */
 }
 
 .payment-option-card h3 {
@@ -169,4 +174,16 @@ p {
         flex: 0 0 100%;
         max-width: 100%;
     }
+}
+
+/* Content area of the card */
+.card-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Button container at the bottom of the card */
+.card-button {
+    margin-top: auto;
 } 
