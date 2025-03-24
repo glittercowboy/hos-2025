@@ -552,15 +552,12 @@
         
         // Available coupons with expiration dates
         const validCoupons = {
-            'EARLYBIRD25': {
+            'EARLYBIRD': {
                 discount: 0.25, // 25% off
-                expires: new Date('2025-05-15T23:59:59'), // Example expiration date
-                description: 'Early Bird Discount (25% off)'
-            },
-            'SUMMER500': {
-                discount: 500, // $500 flat discount
-                expires: new Date('2025-06-30T23:59:59'),
-                description: 'Summer Special ($500 off)'
+                expires: new Date('2024-04-28T23:59:59'),
+                description: 'Early Bird Discount (25% off)',
+                limited: true,
+                maxUses: 6
             }
         };
         
@@ -613,7 +610,12 @@
                 month: 'long', 
                 day: 'numeric' 
             });
-            couponExpiry.textContent = `Valid until: ${expiryDate}`;
+            
+            let expiryMessage = `Valid until: ${expiryDate}`;
+            if (coupon.limited && coupon.maxUses) {
+                expiryMessage += ` • Limited to ${coupon.maxUses} uses`;
+            }
+            couponExpiry.textContent = expiryMessage;
             
             // Apply discount to all price displays
             applyDiscount();

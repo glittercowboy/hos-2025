@@ -32,13 +32,11 @@ const PAYMENT_PLANS = {
 // Valid coupon codes with their Stripe coupon IDs
 // In production, you would likely store these in a database
 const VALID_COUPONS = {
-    'EARLYBIRD25': {
-        stripeId: 'EARLYBIRD25',
-        expires: new Date('2025-05-15T23:59:59')
-    },
-    'SUMMER500': {
-        stripeId: 'SUMMER500',
-        expires: new Date('2025-06-30T23:59:59')
+    'EARLYBIRD': {
+        stripeId: 'promo_1R6G7yK5DsdBdIvwTgGBE3fT',
+        expires: new Date('2024-04-28T23:59:59'),
+        maxUses: 6,
+        currentUses: 0 // In a real app, this would be stored in a database
     }
 };
 
@@ -126,20 +124,37 @@ module.exports = async (req, res) => {
                 const now = new Date();
                 if (now > coupon.expires) {
                     console.log('Coupon expired:', couponCode);
-                } else {
+                } 
+                // Check if coupon has reached max uses
+                else if (coupon.maxUses && coupon.currentUses >= coupon.maxUses) {
+                    console.log('Coupon reached maximum usage limit:', couponCode);
+                }
+                else {
                     try {
                         // Verify the coupon exists in Stripe
-                        console.log('Retrieving coupon from Stripe:', coupon.stripeId);
-                        const stripeCoupon = await stripe.coupons.retrieve(coupon.stripeId);
+                        console.log('Retrieving promotion code from Stripe:', coupon.stripeId);
+                        const promoCode = await stripe.promotionCodes.retrieve(coupon.stripeId);
                         
-                        if (stripeCoupon && !stripeCoupon.deleted) {
-                            // Add coupon to checkout session
-                            console.log('Applying coupon to checkout session:', stripeCoupon.id);
-                            sessionParams.discounts = [
-                                {
-                                    coupon: stripeCoupon.id,
-                                },
-                            ];
+                        if (promoCode && !promoCode.deleted) {
+                            // Check if the promotion code is still valid according to Stripe
+                            if (!promoCode.active) {
+                                console.log('Promotion code is inactive in Stripe');
+                            } 
+                            else if (promoCode.max_redemptions && promoCode.times_redeemed >= promoCode.max_redemptions) {
+                                console.log('Promotion code has reached maximum redemptions in Stripe');
+                            }
+                            else {
+                                // Add promotion code to checkout session
+                                console.log('Applying promotion code to checkout session:', promoCode.id);
+                                sessionParams.discounts = [
+                                    {
+                                        promotion_code: promoCode.id,
+                                    },
+                                ];
+                                
+                                // In a real app, you would update the usage count in the database
+                                // coupon.currentUses += 1;
+                            }
                         }
                     } catch (couponError) {
                         console.error('Error applying coupon:', couponError.message);
