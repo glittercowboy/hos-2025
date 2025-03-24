@@ -78,7 +78,7 @@ module.exports = async (req, res) => {
                 },
             ],
             mode: isSubscription ? 'subscription' : 'payment',
-            success_url: `${req.headers.origin}/success.html?session_id={CHECKOUT_SESSION_ID}`,
+            success_url: `${req.headers.origin}/success.html?session_id={CHECKOUT_SESSION_ID}&priceId=${priceId}`,
             cancel_url: `${req.headers.origin}/cancel.html`,
         };
 

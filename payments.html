@@ -3,10 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
     <title>Heart of Sound Course - Payment Options</title>
+    <!-- Preload font files to ensure they load correctly -->
+    <link rel="preload" href="fonts/Canela Text Family/CanelaText-Regular-Trial.otf" as="font" type="font/otf" crossorigin>
+    <link rel="preload" href="fonts/Canela Text Family/CanelaText-Bold-Trial.otf" as="font" type="font/otf" crossorigin>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="payment-styles.css">
     <script src="https://js.stripe.com/v3/"></script>
+    <style>
+        /* Modal styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            transform: translateY(-20px);
+            transition: transform 0.3s ease;
+        }
+        
+        .modal-overlay.active .modal-content {
+            transform: translateY(0);
+        }
+        
+        .modal-title {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        
+        .modal-text {
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .modal-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .modal-confirm {
+            padding: 10px 20px;
+            background-color: var(--color-accent, #e6ac55);
+            color: var(--color-black, #1d1d1d);
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .modal-confirm:hover {
+            background-color: var(--color-accent-hover, #edb45f);
+            transform: translateY(-2px);
+        }
+        
+        .modal-cancel {
+            padding: 10px 20px;
+            background-color: transparent;
+            color: #555;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .modal-cancel:hover {
+            background-color: #f5f5f5;
+        }
+    </style>
 </head>
 <body>
     <div class="payment-options-container">
@@ -80,57 +170,113 @@
         </div>
     </div>
 
+    <!-- Confirmation Modal -->
+    <div class="modal-overlay" id="confirmation-modal">
+        <div class="modal-content">
+            <h2 class="modal-title">Confirm Your Payment</h2>
+            <p class="modal-text" id="modal-description"></p>
+            <div class="modal-buttons">
+                <button class="modal-confirm" id="modal-confirm">Proceed to Payment</button>
+                <button class="modal-cancel" id="modal-cancel">Cancel</button>
+            </div>
+        </div>
+    </div>
+
     <script>
         // This is your Stripe publishable key
         const stripe = Stripe('pk_test_51R5rG7K5DsdBdIvwf73Qfe0O98wnMhvPE4SkxyICCv1irOvENwOmccYFw7fQlaw5PNvswlbfTkP2BZSkkOrRWl4500KQI25Xwv');
 
+        // Modal elements
+        const modal = document.getElementById('confirmation-modal');
+        const modalDescription = document.getElementById('modal-description');
+        const modalConfirm = document.getElementById('modal-confirm');
+        const modalCancel = document.getElementById('modal-cancel');
+        
+        let currentButton = null;
+        let currentPriceId = null;
+
+        // Payment plan descriptions
+        const planDescriptions = {
+            'group-single': 'You are about to make a one-time payment of $4,000 for the Group Offering.',
+            'group-three': 'You are about to set up 3 monthly payments of $1,360 each (total $4,080) for the Group Offering. Your card will be charged today and for 2 more months.',
+            'group-six': 'You are about to set up 6 monthly payments of $685 each (total $4,110) for the Group Offering. Your card will be charged today and for 5 more months.',
+            'premium-single': 'You are about to make a one-time payment of $5,500 for the Premium Offering.',
+            'premium-three': 'You are about to set up 3 monthly payments of $1,860 each (total $5,580) for the Premium Offering. Your card will be charged today and for 2 more months.',
+            'premium-six': 'You are about to set up 6 monthly payments of $935 each (total $5,610) for the Premium Offering. Your card will be charged today and for 5 more months.'
+        };
+
         // Add click handlers to all payment buttons
         document.querySelectorAll('.stripe-button').forEach(button => {
-            button.addEventListener('click', async (e) => {
-                try {
-                    // Disable the button to prevent double clicks
-                    button.disabled = true;
-                    
-                    const priceId = e.target.dataset.priceId;
-                    
-                    // Call your backend to create a Checkout Session
-                    const response = await fetch('/api/create-checkout-session', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({
-                            priceId: priceId
-                        }),
-                    });
-
-                    if (!response.ok) {
-                        const errorData = await response.json();
-                        throw new Error(errorData.error || 'Something went wrong with the payment setup');
-                    }
-
-                    const session = await response.json();
-
-                    if (!session || !session.id) {
-                        throw new Error('Invalid session response from server');
-                    }
-
-                    // Redirect to Stripe Checkout
-                    const result = await stripe.redirectToCheckout({
-                        sessionId: session.id,
-                    });
-
-                    if (result.error) {
-                        throw new Error(result.error.message);
-                    }
-                } catch (error) {
-                    console.error('Error:', error);
-                    alert(error.message || 'Something went wrong. Please try again.');
-                } finally {
-                    // Re-enable the button
-                    button.disabled = false;
-                }
+            button.addEventListener('click', (e) => {
+                // Store reference to current button and price ID
+                currentButton = e.target;
+                currentPriceId = e.target.dataset.priceId;
+                
+                // Show confirmation with plan details
+                modalDescription.textContent = planDescriptions[currentPriceId] || 'Please confirm your payment.';
+                modal.classList.add('active');
             });
+        });
+
+        // Modal cancel button
+        modalCancel.addEventListener('click', () => {
+            modal.classList.remove('active');
+            currentButton = null;
+            currentPriceId = null;
+        });
+
+        // Modal confirm button
+        modalConfirm.addEventListener('click', async () => {
+            modal.classList.remove('active');
+            
+            if (!currentButton || !currentPriceId) return;
+            
+            // Start payment process
+            try {
+                // Disable the button to prevent double clicks
+                currentButton.disabled = true;
+                
+                // Call your backend to create a Checkout Session
+                const response = await fetch('/api/create-checkout-session', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        priceId: currentPriceId
+                    }),
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.error || 'Something went wrong with the payment setup');
+                }
+
+                const session = await response.json();
+
+                if (!session || !session.id) {
+                    throw new Error('Invalid session response from server');
+                }
+
+                // Redirect to Stripe Checkout
+                const result = await stripe.redirectToCheckout({
+                    sessionId: session.id,
+                });
+
+                if (result.error) {
+                    throw new Error(result.error.message);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert(error.message || 'Something went wrong. Please try again.');
+            } finally {
+                // Re-enable the button
+                if (currentButton) {
+                    currentButton.disabled = false;
+                }
+                currentButton = null;
+                currentPriceId = null;
+            }
         });
     </script>
 </body>

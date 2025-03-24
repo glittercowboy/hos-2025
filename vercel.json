@@ -16,6 +16,14 @@
     {
       "src": "*.js",
       "use": "@vercel/static"
+    },
+    {
+      "src": "images-optimized/**/*",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "fonts/**/*",
+      "use": "@vercel/static"
     }
   ],
   "routes": [

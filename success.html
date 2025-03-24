@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
     <title>Payment Successful - Heart of Sound Course</title>
+    <!-- Preload font files to ensure they load correctly -->
+    <link rel="preload" href="fonts/Canela Text Family/CanelaText-Regular-Trial.otf" as="font" type="font/otf" crossorigin>
+    <link rel="preload" href="fonts/Canela Text Family/CanelaText-Bold-Trial.otf" as="font" type="font/otf" crossorigin>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="payment-styles.css">
     <style>
@@ -73,6 +77,7 @@
         <div class="success-message">
             <p>Thank you for enrolling in the Heart of Sound Course!</p>
             <p>Your payment has been processed successfully. You will receive a confirmation email shortly with all the details about your enrollment.</p>
+            <p id="payment-details" style="display: none; font-weight: bold; margin: 20px 0; padding: 15px; background-color: #f8f9fa; border-radius: 5px; border-left: 4px solid var(--color-accent, #e6ac55);"></p>
             <p>If you have any questions, please contact us at <a href="mailto:support@heartofsound.com">support@heartofsound.com</a>.</p>
         </div>
         
@@ -80,12 +85,43 @@
     </div>
 
     <script>
-        // Get the session_id from the URL if needed for verification
+        // Get the session_id and priceId from the URL
         const urlParams = new URLSearchParams(window.location.search);
         const sessionId = urlParams.get('session_id');
+        const priceId = urlParams.get('priceId');
+        
+        // Display payment details based on the plan type
+        const paymentDetailsEl = document.getElementById('payment-details');
+        
+        if (paymentDetailsEl) {
+            if (priceId) {
+                let planDetails = '';
+                
+                // Set plan-specific details
+                if (priceId === 'group-single') {
+                    planDetails = 'You have made a one-time payment of $4,000 for the Group Offering.';
+                } else if (priceId === 'group-three') {
+                    planDetails = 'You have set up 3 monthly payments of $1,360 each (total $4,080) for the Group Offering. Your card will be charged today and for 2 more months.';
+                } else if (priceId === 'group-six') {
+                    planDetails = 'You have set up 6 monthly payments of $685 each (total $4,110) for the Group Offering. Your card will be charged today and for 5 more months.';
+                } else if (priceId === 'premium-single') {
+                    planDetails = 'You have made a one-time payment of $5,500 for the Premium Offering.';
+                } else if (priceId === 'premium-three') {
+                    planDetails = 'You have set up 3 monthly payments of $1,860 each (total $5,580) for the Premium Offering. Your card will be charged today and for 2 more months.';
+                } else if (priceId === 'premium-six') {
+                    planDetails = 'You have set up 6 monthly payments of $935 each (total $5,610) for the Premium Offering. Your card will be charged today and for 5 more months.';
+                }
+                
+                if (planDetails) {
+                    paymentDetailsEl.innerHTML = planDetails;
+                    paymentDetailsEl.style.display = 'block';
+                }
+            }
+        }
         
         // You can use sessionId to verify the payment status with your backend if needed
         console.log('Payment session ID:', sessionId);
+        console.log('Price ID:', priceId);
     </script>
 </body>
 </html> 

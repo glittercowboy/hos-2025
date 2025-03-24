@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /payments.html
+Disallow: /success.html
+Disallow: /cancel.html
 
 Sitemap: https://heart-of-sound-course.com/sitemap.xml 
