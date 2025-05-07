@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You!</title>
+    <link rel="stylesheet" href="thankyou.css">
+    <!-- Font preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Font display swap for better performance -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
+</head>
+<body>
+    <div class="thank-you-container">
+        <h1 id="thankYouMessage"></h1>
+        <p>Check your email for more information. See you on the 17th.</p>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const firstName = urlParams.get('firstName');
+            const thankYouMessageElement = document.getElementById('thankYouMessage');
+
+            if (firstName && thankYouMessageElement) {
+                thankYouMessageElement.textContent = `CONGRATS ${decodeURIComponent(firstName).toUpperCase()}! YOU'RE ON THE LIST 🤙🏼`;
+            } else if (thankYouMessageElement) {
+                thankYouMessageElement.textContent = "CONGRATS! YOU'RE ON THE LIST 🤙🏼"; // Fallback if no name
+            }
+        });
+    </script>
+</body>
+</html> 

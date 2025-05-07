@@ -1,0 +1,413 @@
+:root {
+    --color-primary: #FFFFFF; /* White background */
+    --color-secondary: #333333; /* Dark text color */
+    --color-accent: #e6ac55;
+    --color-accent-dark: #d39f4d;
+    --color-bg-section: transparent; /* Sections blend with primary background */
+    --font-main: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --font-headings: 'Poppins', sans-serif;
+    --font-serif: 'Crimson Text', serif;
+}
+
+/* General Body Styles */
+body {
+    font-family: var(--font-main);
+    margin: 0;
+    padding: 0;
+    background-color: var(--color-primary);
+    color: var(--color-secondary);
+    font-size: 17px; /* Increased base font size */
+    line-height: 1.8; /* Adjusted line height for new base */
+}
+
+.container {
+    max-width: 800px; /* Adjusted max-width */
+    margin: 0 auto;
+    padding: 25px; /* Increased padding */
+}
+
+header, main section, footer {
+    padding: 30px 25px; /* Increased padding */
+}
+
+header {
+    background-color: var(--color-primary); /* White background */
+    color: var(--color-secondary);
+    text-align: center;
+    padding-top: 60px;
+    padding-bottom: 60px;
+    border-bottom: none; /* Removed border */
+}
+
+.image-placeholder { /* Now an img tag */
+    display: block; /* For block-level properties like margin auto */
+    max-width: 750px;
+    width: 100%;    /* Responsive up to max-width */
+    aspect-ratio: 16 / 9;
+    object-fit: cover; /* Crop/scale to fill, maintaining aspect ratio */
+    margin: 0 auto 50px auto; /* Centering and bottom margin */
+    border-radius: 8px;
+    /* Removed properties not applicable/needed for an img: 
+       background-color, color, display:flex, align-items, justify-content, border 
+    */
+}
+
+header h1 {
+    font-family: var(--font-headings);
+    font-size: 3.2em; /* Increased */
+    margin-bottom: 0.3em;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--color-secondary); /* Dark text */
+    line-height: 1.2;
+    max-width: 800px; /* Added max-width */
+    margin-left: auto; /* Center the h1 */
+    margin-right: auto; /* Center the h1 */
+}
+
+header h2 {
+    font-family: var(--font-main);
+    font-size: 1.8em; /* Increased */
+    margin-bottom: 1em;
+    font-weight: 400;
+    color: #555555; /* Slightly lighter dark text for subtitle */
+    font-style: bold;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.5;
+}
+
+header h3 {
+    font-family: var(--font-headings);
+    font-size: 1.5em; /* Increased */
+    margin-bottom: 0.1em; /* Reduced margin-bottom */
+    font-weight: 600;
+    color: var(--color-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.button-container {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.register-button, .register-button-form, #registrationForm button[type="submit"] {
+    background-color: var(--color-accent);
+    color: #FFFFFF; /* White text for buttons for contrast with accent */
+    border: none;
+    padding: 20px 40px; /* Increased padding */
+    font-size: 1.35em; /* Increased */
+    font-family: var(--font-headings);
+    font-weight: 600;
+    text-transform: uppercase;
+    border-radius: 8px; /* Slightly larger radius */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: inline-block;
+    margin-top: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.25);
+}
+
+.register-button:hover, .register-button-form:hover, #registrationForm button[type="submit"]:hover {
+    background-color: var(--color-accent-dark);
+    transform: translateY(-3px);
+}
+
+.date-info {
+    font-family: var(--font-serif);
+    font-size: 1.1em; /* Increased */
+    margin-top: 0.5em; /* Reduced margin-top */
+    color: #777777; /* Darker grey for date */
+}
+
+main {
+    max-width: 1000px;
+    margin: 20px auto;
+}
+
+main section {
+    background-color: var(--color-bg-section);
+    color: var(--color-secondary);
+    margin-bottom: 20px; /* Reduced general section margin */
+    padding: 15px 0;    /* Reduced general section padding */
+    border-radius: 0;
+    box-shadow: none;
+}
+
+main section:last-of-type {
+    border-bottom: none;
+}
+
+main h2 {
+    font-family: var(--font-headings);
+    font-size: 2.6em; /* Increased */
+    color: var(--color-accent);
+    margin-top: 0; /* Remove top margin if first element */
+    margin-bottom: 1.2em;
+    padding-bottom: 0.6em;
+    border-bottom: 2px solid var(--color-accent);
+    text-align: center;
+    line-height: 1.3;
+}
+
+main p, main li {
+    font-size: 1.25em;
+    margin-bottom: 1em; /* Reduced paragraph/list margin */
+    line-height: 1.9;
+    font-family: var(--font-main);
+    max-width: 750px; /* Max width for readability */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+main section.intro-text p,
+main section.about-taches p,
+main section.webinar-info p,
+main section.pre-intro-pain-points p { /* Added new section */
+    text-align: left;
+}
+
+.pain-points li {
+    list-style-type: none;
+    padding-left: 0;
+    font-size: 1.3em; /* Increased */
+    text-align: left;
+    max-width: 750px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Form Specific Styles */
+.registration-form-section {
+    background-color: var(--color-bg-section);
+    padding: 25px; /* Simplified padding, consistent with reduced spacing */
+    border-radius: 0;
+    margin-bottom: 20px; /* Consistent with main section */
+    border-bottom: none;
+}
+
+#registrationForm {
+    max-width: 600px; /* Limit form width */
+    margin: 0 auto;
+}
+
+#registrationForm div {
+    margin-bottom: 25px;
+}
+
+#registrationForm label, #registrationForm p {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 500;
+    font-family: var(--font-main);
+    color: var(--color-secondary); /* Dark text */
+    font-size: 1.1em; /* Increased */
+}
+
+#registrationForm input[type="text"],
+#registrationForm input[type="email"] {
+    width: calc(100% - 28px);
+    padding: 14px;
+    border: 1px solid #CCCCCC; /* Subtle grey border */
+    background-color: #FFFFFF; /* White background for inputs */
+    color: var(--color-secondary);
+    border-radius: 6px;
+    font-size: 1.1em; /* Increased */
+    font-family: var(--font-main);
+}
+
+#registrationForm input[type="text"]:focus,
+#registrationForm input[type="email"]:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px rgba(230, 172, 85, 0.4);
+}
+
+#registrationForm input[type="radio"] {
+    margin-right: 10px;
+    accent-color: var(--color-accent);
+    transform: scale(1.2);
+}
+
+#registrationForm label[for="artistYes"],
+#registrationForm label[for="artistNo"] {
+    display: inline-block;
+    font-weight: normal;
+    margin-right: 25px;
+    font-family: var(--font-main);
+    vertical-align: middle;
+    font-size: 1.05em; /* Increased */
+}
+
+#artistDetails {
+    background-color: var(--color-bg-section); /* Transparent/White bg */
+    padding: 25px;
+    border-radius: 0; /* No radius */
+    margin-top: 20px;
+    border: none; /* Removed border */
+}
+
+.faq {
+    border-bottom: none;
+}
+
+.faq div {
+    margin-bottom: 15px;    /* Reduced */
+    padding-bottom: 15px;   /* Reduced */
+    border-bottom: none;
+}
+
+.faq div:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.faq h3 {
+    font-family: var(--font-headings);
+    font-size: 1.7em;
+    color: var(--color-accent);
+    margin-top: 0;
+    margin-bottom: 0.8em;
+    text-align: center; /* Centrally align FAQ headings */
+}
+
+footer {
+    background-color: var(--color-primary); /* White background */
+    color: #555555;
+    text-align: center;
+    padding: 50px 25px;
+    font-family: var(--font-main);
+    font-size: 1em;
+    border-top: none; /* Removed border */
+}
+
+footer .container {
+    max-width: 800px; /* Adjusted max-width */
+}
+
+footer img {
+    max-width: 110px;
+    margin-bottom: 20px;
+    opacity: 0.8; /* Slightly more visible on light bg */
+}
+
+/* Styling for the moved pain points section */
+.pre-intro-pain-points {
+    border-bottom: none;
+    padding-top: 10px;
+    padding-bottom: 15px; /* Adjusted for consistency */
+    margin-bottom: 20px;  /* Consistent with main section */
+}
+
+.pre-intro-pain-points .pain-points li {
+    font-size: 1.35em; /* Slightly more pronounced */
+    line-height: 1.7;
+    color: #444444; /* Darker text for pain points on light bg */
+    margin-bottom: 1em;
+}
+
+.pre-intro-pain-points p {
+    font-size: 1.3em; /* Slightly more pronounced */
+    font-weight: 500; /* Bolder */
+    color: var(--color-accent); /* Accent color for emphasis */
+    text-align: center; /* Centered as it's a concluding statement for the list */
+    margin-top: 1.5em;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    body {
+        font-size: 16px;
+    }
+    header h1 {
+        font-size: 2.7em;
+    }
+
+    header h2 {
+        font-size: 1.6em;
+    }
+
+    main h2 {
+        font-size: 2.2em;
+    }
+
+    .register-button, .register-button-form, #registrationForm button[type="submit"] {
+        padding: 18px 35px;
+        font-size: 1.25em;
+    }
+
+    main p, main li {
+        font-size: 1.15em;
+    }
+    .pain-points li {
+        font-size: 1.2em;
+    }
+    .faq h3 {
+        font-size: 1.5em;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        font-size: 15px;
+        line-height: 1.7;
+    }
+    header, main section, footer {
+        padding: 20px 15px;
+    }
+
+    header {
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+
+    header h1 {
+        font-size: 2.2em;
+    }
+
+    header h2 {
+        font-size: 1.3em;
+    }
+
+    header h3 {
+        font-size: 1.2em;
+    }
+
+    .register-button, .register-button-form, #registrationForm button[type="submit"] {
+        padding: 15px 25px;
+        font-size: 1.1em;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    main h2 {
+        font-size: 2em;
+    }
+
+    main p, main li {
+        font-size: 1.1em;
+        line-height: 1.8;
+    }
+
+    .pain-points li {
+        font-size: 1.15em;
+    }
+
+    #registrationForm input[type="text"],
+    #registrationForm input[type="email"] {
+        width: calc(100% - 24px);
+        padding: 12px;
+        font-size: 1em;
+    }
+    #registrationForm label, #registrationForm p {
+        font-size: 1em;
+    }
+
+    .faq h3 {
+        font-size: 1.4em;
+    }
+} 
