@@ -38,5 +38,9 @@
       "src": "/(.*)",
       "dest": "/$1"
     }
+  ],
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/perfectionist", "destination": "/perfectionist.html" }
   ]
 } 
