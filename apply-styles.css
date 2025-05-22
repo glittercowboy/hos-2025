@@ -1,0 +1,303 @@
+/* 
+========================================
+APPLICATION FORM STYLES
+========================================
+This file contains styles specific to the application form page.
+It complements the main styles.css file.
+*/
+
+/* Application Hero Section - Modified version of the main hero */
+.application-hero {
+    min-height: 60vh; /* Shorter than the main hero */
+}
+
+/* Reduced height hero for application page */
+.application-hero.reduced-height {
+    min-height: 40vh; /* Even shorter for application page */
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+/* Application Progress Bar */
+.application-progress-container {
+    margin: 40px 0;
+}
+
+.application-progress-bar {
+    width: 100%;
+    height: 8px;
+    background-color: rgba(230, 172, 85, 0.2);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.application-progress {
+    height: 100%;
+    background-color: var(--color-accent);
+    width: 16.66%; /* 1/6 for first section */
+    transition: width 0.5s ease;
+}
+
+.application-progress-text {
+    text-align: center;
+    margin-top: 10px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9em;
+    color: var(--color-black);
+}
+
+/* Form Sections */
+.form-section {
+    margin-bottom: 40px;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.form-section h3 {
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    margin-bottom: 30px;
+    color: var(--color-black);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+}
+
+.hidden {
+    display: none;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+/* Form Groups */
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 0.9em;
+    color: var(--color-black);
+}
+
+.form-group .form-hint {
+    font-family: 'Crimson Text', serif;
+    font-style: italic;
+    font-size: 0.9em;
+    margin-top: -5px;
+    margin-bottom: 8px;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    font-family: 'Crimson Text', serif;
+    font-size: 1em;
+    color: var(--color-black);
+    background-color: rgba(255, 255, 255, 0.9);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="email"]:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 2px rgba(230, 172, 85, 0.2);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* Textarea sizing based on expected response length */
+.form-group textarea[rows="3"] {
+    min-height: 80px;
+}
+
+.form-group textarea[rows="4"] {
+    min-height: 120px;
+}
+
+.form-group textarea[rows="6"] {
+    min-height: 180px;
+}
+
+/* Required field indicator */
+.required {
+    color: var(--color-tertiary);
+}
+
+/* Checkbox styling */
+.checkbox-container {
+    display: flex;
+    align-items: flex-start;
+}
+
+.checkbox-container input[type="checkbox"] {
+    margin-top: 5px;
+    margin-right: 10px;
+    min-width: 18px;
+    height: 18px;
+}
+
+.checkbox-container label {
+    font-family: 'Crimson Text', serif;
+    font-weight: 400;
+    font-size: 0.95em;
+    line-height: 1.5;
+}
+
+/* Form Navigation */
+.form-navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Button Styles */
+.secondary-button {
+    background-color: var(--color-black);
+    color: var(--color-white);
+}
+
+.secondary-button:hover {
+    background-color: #333;
+    color: var(--color-white);
+}
+
+.tertiary-button {
+    background-color: rgba(0, 0, 0, 0.1);
+    color: var(--color-black);
+}
+
+.tertiary-button:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+    color: var(--color-black);
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+button:disabled:hover {
+    transform: none;
+}
+
+/* Error and Confirmation Messages */
+.error-message {
+    color: #e2725b;
+    font-size: 0.85em;
+    margin-top: 5px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    padding: 3px 0;
+    animation: errorPulse 0.5s ease-in-out;
+}
+
+@keyframes errorPulse {
+    0% { opacity: 0; transform: translateY(-5px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Style for invalid fields */
+.invalid {
+    border-color: #e2725b !important;
+    box-shadow: 0 0 0 1px #e2725b !important;
+    background-color: rgba(226, 114, 91, 0.05) !important;
+}
+
+.submission-error {
+    background-color: rgba(226, 114, 91, 0.1);
+    border-left: 4px solid #e2725b;
+    padding: 15px;
+    margin-top: 20px;
+    font-size: 0.95em;
+    color: #333;
+}
+
+.save-confirmation {
+    background-color: rgba(230, 172, 85, 0.1);
+    border-left: 4px solid var(--color-accent);
+    padding: 15px;
+    margin-top: 20px;
+    font-family: 'Crimson Text', serif;
+    font-style: italic;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Thank You Section */
+.thank-you {
+    text-align: center;
+    padding: 80px 0;
+}
+
+.thank-you h2 {
+    margin-bottom: 30px;
+}
+
+.thank-you p {
+    font-family: 'Crimson Text', serif;
+    font-size: 1.1em;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    max-width: 85%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* 
+========================================
+MEDIA QUERIES
+========================================
+*/
+
+/* Tablets */
+@media (max-width: 992px) {
+    .form-navigation {
+        flex-wrap: wrap;
+    }
+    
+    .form-navigation button {
+        margin-bottom: 10px;
+        width: 48%;
+    }
+    
+    #save-button {
+        order: 3;
+        width: 100%;
+    }
+}
+
+/* Mobile Phones */
+@media (max-width: 576px) {
+    .application-hero {
+        min-height: 50vh;
+    }
+    
+    .form-navigation button {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    
+    .form-group label {
+        font-size: 0.85em;
+    }
+}
