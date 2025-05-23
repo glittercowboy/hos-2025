@@ -1,0 +1,1272 @@
+/* 
+========================================
+STYLE CENTER - GLOBAL VARIABLES
+========================================
+This section contains global variables that can be easily adjusted
+to change styling across the entire website.
+*/
+
+:root {
+    /* 
+    COLOR VARIABLES
+    Change these values to update colors across the entire site.
+    */
+    --color-black: #1d1d1d;
+    --color-white: #efefef;
+    --color-accent: #e6ac55;
+    --color-accent-hover: #edb45f;
+    --color-secondary: #35482a;
+    --color-tertiary: #e2725b;
+
+    /* 
+    TYPOGRAPHY VARIABLES
+    Change these values to update font sizes across the entire site.
+    Base font size is 16px, and all other sizes use the major third scale (1.25).
+    */
+    --font-size-base: 20px;
+    --font-size-ratio: 1.3; /* Major third ratio */
+    
+    /* Font size calculations using the scale */
+    --font-size-small: calc(var(--font-size-base) / var(--font-size-ratio));
+    --font-size-h5: calc(var(--font-size-base) * var(--font-size-ratio));
+    --font-size-h4: calc(var(--font-size-base) * var(--font-size-ratio) * var(--font-size-ratio));
+    --font-size-h3: calc(var(--font-size-base) * var(--font-size-ratio) * var(--font-size-ratio) * var(--font-size-ratio));
+    --font-size-h2: calc(var(--font-size-base) * var(--font-size-ratio) * var(--font-size-ratio) * var(--font-size-ratio) * var(--font-size-ratio));
+    --font-size-h1: calc(var(--font-size-base) * var(--font-size-ratio) * var(--font-size-ratio) * var(--font-size-ratio) * var(--font-size-ratio) * var(--font-size-ratio));
+    --font-size-hero: calc(var(--font-size-h1) * 1.75); /* Special size for hero title - 50% larger than h1 */
+
+    /* 
+    SPACING VARIABLES
+    Change these to adjust spacing across the entire site.
+    */
+    --spacing-xs: 10px;
+    --spacing-sm: 20px;
+    --spacing-md: 40px;
+    --spacing-lg: 60px;
+    --spacing-xl: 100px;
+
+    /* 
+    LAYOUT VARIABLES
+    Change these to adjust the grid layout.
+    */
+    --max-site-width: 1440px; /* Maximum width of the entire site */
+    --block-width: calc(var(--max-site-width) / 12); /* Width of a single block */
+    --container-width-12: var(--max-site-width); /* 12 blocks wide (full width) */
+    --container-width-10: calc(var(--block-width) * 10); /* 10 blocks wide */
+    --container-width-8: calc(var(--block-width) * 8); /* 8 blocks wide */
+    --container-width-6: calc(var(--block-width) * 6); /* 6 blocks wide */
+    --card-padding: 20px;
+}
+
+/* 
+========================================
+RESET & BASE STYLES
+========================================
+*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Crimson Text', sans-serif;
+    font-size: var(--font-size-base);
+    line-height: 1.6;
+    color: var(--color-black);
+    background-color: var(--color-white);
+}
+
+/* 
+========================================
+TYPOGRAPHY
+========================================
+*/
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: var(--spacing-sm);
+}
+
+h1 {
+    font-family: 'Canela Text', serif;
+    font-size: var(--font-size-h1);
+}
+
+h2 {
+    font-family: 'Canela Text', serif;
+    font-size: var(--font-size-h2);
+}
+
+h3 {
+    font-family: 'Canela Text', serif;
+    font-size: var(--font-size-h3);
+}
+
+h4 {
+    font-family: 'Canela Text', serif;
+    font-size: var(--font-size-h4);
+}
+
+h5 {
+    font-family: 'Canela Text', serif;
+    font-size: var(--font-size-h5);
+}
+
+h6 {
+    font-family: 'Poppins', sans-serif;
+    font-size: var(--font-size-h6);
+}
+
+p {
+    margin-bottom: var(--spacing-sm);
+}
+
+/* Canela Text class for applying to any element */
+.canela-text {
+    font-family: 'Canela Text', serif;
+}
+
+/* Drop Cap styling */
+.drop-cap {
+    line-height: 2; /* Double line height for all paragraphs with drop caps */
+}
+
+.drop-cap::first-letter {
+    font-family: 'Canela Text', serif;
+    font-size: 4em; /* Size to match the double line height */
+    font-weight: 900;
+    float: left;
+    margin-right: 0.15em; /* Space to the right */
+    line-height: 0.9; /* Tighter line height for better alignment */
+    margin-top: 0; /* Remove top margin */
+    padding-top: 0.1em; /* Padding to align with text top */
+    height: 1.7em; /* Control the height to be exactly 2 lines with line-height: 2 */
+    color: var(--color-accent);
+}
+
+/* 
+========================================
+LAYOUT
+========================================
+*/
+
+.container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 var(--spacing-sm);
+}
+
+/* Container width classes for different block widths */
+.width-6 {
+    max-width: var(--container-width-6);
+}
+
+.width-8 {
+    max-width: var(--container-width-8);
+}
+
+.width-10 {
+    max-width: var(--container-width-10);
+}
+
+.width-12 {
+    max-width: var(--container-width-12);
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -15px;
+}
+
+/* Column system - 12 block grid */
+.col-3 {
+    width: 25%;
+    padding: 0 15px;
+}
+
+.col-4 {
+    width: 33.333333%;
+    padding: 0 15px;
+}
+
+.col-5 {
+    width: 41.666667%;
+    padding: 0 15px;
+}
+
+.col-6 {
+    width: 50%;
+    padding: 0 15px;
+}
+
+.col-8 {
+    width: 66.666667%;
+    padding: 0 15px;
+}
+
+/* 
+========================================
+COMPONENTS
+========================================
+*/
+
+/* Image Styles */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Card Styles */
+.card {
+    padding: var(--card-padding);
+    margin-bottom: var(--spacing-md);
+    background-color: var(--color-white);
+}
+
+/* Button Styles */
+.button {
+    display: inline-block;
+    padding: 12px 30px;
+    background-color: var(--color-accent);
+    color: var(--color-black);
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-family: 'Poppins', sans-serif;
+    font-size: var(--font-size-base);
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+.button:hover {
+    background-color: var(--color-accent-hover);
+    color: var(--color-white);
+    transform: scale(1.05);
+}
+
+.centered {
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* 
+========================================
+SECTION STYLES
+========================================
+*/
+
+section {
+    padding: var(--spacing-xl) 0;
+}
+
+/* Section background alternation - REMOVED nth-of-type styling */
+/* REPLACED WITH CLASS-BASED STYLING BELOW */
+
+/* Default section styling - white background with black text */
+.section-light {
+    background-color: var(--color-white);
+    color: var(--color-black);
+}
+
+/* Dark section styling - black background with white text */
+.section-dark {
+    background-color: var(--color-black);
+    color: var(--color-white);
+}
+
+/* Accent section styling - accent color background with black text */
+.section-accent {
+    background-color: var(--color-accent);
+    color: var(--color-black);
+}
+
+/* Secondary section styling - secondary color background with white text */
+.section-secondary {
+    background-color: var(--color-secondary);
+    color: var(--color-black);
+}
+
+/* Tertiary section styling - tertiary color background with black text */
+.section-tertiary {
+    background-color: var(--color-tertiary);
+    color: var(--color-black);
+}
+
+/* Problem Section - black background with white text */
+.problem {
+    background-color: var(--color-black); /* Black background */
+    color: var(--color-white); /* White text */
+}
+
+/* White drop cap for problem section */
+.problem .drop-cap::first-letter {
+    color: var(--color-white); /* White drop cap */
+}
+
+/* Problem Section heading */
+.problem h4 {
+    text-align: center;
+    margin: var(--spacing-md) 0;
+}
+
+/* Hero Section */
+.hero {
+    background-image: url('../images/jungle.webp');
+    background-size: cover;
+    background-position: center;
+    color: var(--color-white);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    will-change: transform; /* Hardware acceleration hint */
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.hero .container {
+    position: relative;
+    z-index: 1;
+}
+
+.hero h1 {
+    font-size: var(--font-size-hero);
+    margin-bottom: var(--spacing-sm);
+    line-height: 0.9; /* Tighter line height for larger text */
+}
+
+/* Artist Types Section */
+.artist-types h3 {
+    text-align: center;
+    margin: var(--spacing-md) 0;
+}
+
+.artist-types img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+/* Testimonials Sections */
+.testimonials-1 .card,
+.testimonials-2 .card {
+    text-align: center;
+}
+
+/* Make Testimonials 1 section dark */
+.testimonials-1 {
+    background-color: var(--color-black);
+}
+
+/* Make the cards in Testimonials 1 section black with white text */
+.testimonials-1 .card {
+    background-color: var(--color-black);
+    color: var(--color-white);
+}
+
+.testimonials-1 img,
+.testimonials-2 img {
+    max-width: 100%;
+    margin-bottom: var(--spacing-sm);
+}
+
+/* Specific styling for testimonial images in section 1 */
+.testimonials-1 img {
+    max-width: 50%; /* Make images half of their size */
+    margin-left: auto; /* Center the image */
+    margin-right: auto; /* Center the image */
+    margin-bottom: var(--spacing-md);
+}
+
+/* Specific styling for testimonial images in section 2 */
+.testimonials-2 img {
+    max-width: 33%; /* Make images half of their size */
+    margin-left: auto; /* Center the image */
+    margin-right: auto; /* Center the image */
+    margin-bottom: var(--spacing-md);
+}
+
+/* Testimonials 2 specific styling */
+.testimonials-2 .card {
+    background-color: transparent; /* Remove card background */
+    padding: var(--spacing-md) 0; /* Add some vertical spacing between testimonials */
+    margin-bottom: var(--spacing-md);
+}
+
+.testimonials-2 h3 {
+    color: var(--color-black); /* Make person's name white */
+}
+
+.testimonials-2 h4:not(.artist-name) {
+    color: var(--color-black); /* Make regular h4 elements white */
+}
+
+.testimonials-2 .artist-name {
+    color: var(--color-black); /* Keep artist name in black */
+}
+
+.testimonials-2 p {
+    color: var(--color-black); /* Keep testimonial text black */
+}
+
+.testimonials-2 .stars {
+    color: var(--color-white); /* Make stars white */
+    margin-top: var(--spacing-sm);
+    font-size: 1.2em; /* Make stars slightly larger */
+}
+
+/* Style the button in Testimonials 2 to match the Tenets section button */
+.testimonials-2 .button {
+    background-color: var(--color-black); /* Black background for the button */
+    color: var(--color-white); /* White text for better contrast */
+    display: inline-block; /* Prevent full width */
+    min-width: 200px; /* Set a minimum width */
+    max-width: 300px; /* Set a maximum width */
+    margin: var(--spacing-md) auto 0; /* Center the button with auto margins */
+    text-align: center; /* Center the text inside the button */
+}
+
+/* Center the button container */
+.testimonials-2 .container {
+    text-align: center; /* Center the button container */
+}
+
+.testimonials-2 .button:hover {
+    background-color: var(--color-tertiary); /* Keep the hover effect */
+    transform: scale(1.05); /* Keep the scale effect on hover */
+}
+
+/* Solution Section */
+.solution img {
+    display: block;
+    max-width: 100%;
+    margin: 0 auto; /* Center the image */
+}
+
+.solution .row {
+    align-items: center; /* Vertically center the columns */
+    justify-content: center; /* Horizontally center the row */
+}
+
+/* About Section */
+.about img {
+    display: block;
+    max-width: 100%; /* Change from 300px to 100% to fill the full width */
+    margin: 0 auto var(--spacing-md);
+}
+
+/* White drop cap for About section */
+.about .drop-cap::first-letter {
+    color: var(--color-white); /* White drop cap */
+}
+
+/* Guest Teachers Section */
+.guest-teachers {
+    background-color: rgba(255, 255, 255, 0.02);
+    background-image: 
+        radial-gradient(circle at 20% 20%, rgba(230, 172, 85, 0.03) 0, rgba(230, 172, 85, 0) 50px),
+        radial-gradient(circle at 80% 80%, rgba(230, 172, 85, 0.03) 0, rgba(230, 172, 85, 0) 50px);
+    padding: 80px 0;
+}
+
+/* Guest Teacher Cards */
+.guest-teacher-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 30px;
+    transition: transform 0.3s ease;
+    padding: 30px 20px;
+    background-color: rgba(255, 255, 255, 0.03);
+    border-radius: 4px;
+}
+
+.guest-teacher-card:hover {
+    transform: translateY(-3px);
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.guest-teacher-card img {
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    margin-bottom: 20px;
+    border: 2px solid rgba(230, 172, 85, 0.3);
+    transition: border-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.guest-teacher-card:hover img {
+    border-color: var(--color-accent);
+    transform: scale(1.05);
+}
+
+.guest-teacher-card h3 {
+    margin-bottom: 15px;
+    color: var(--color-accent);
+}
+
+.guest-teacher-card p {
+    line-height: 1.8;
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.streaming-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin-top: 20px;
+}
+
+.streaming-button {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px;
+    background-color: transparent;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.streaming-button:hover {
+    transform: translateY(-2px);
+}
+
+.streaming-button i {
+    font-size: 1.4em;
+    color: var(--color-white) !important;
+}
+
+/* Ensure social media icons in guest teacher section are white */
+.section-dark .streaming-button i {
+    color: var(--color-white) !important;
+}
+
+.spotify-button, .apple-button {
+    border: none;
+}
+
+.spotify-button:hover, .apple-button:hover {
+    background-color: transparent;
+}
+
+.guest-teacher-divider {
+    width: 100%;
+    height: 1px;
+    background-color: rgba(230, 172, 85, 0.2);
+    margin: 40px 0;
+}
+
+/* Syllabus Section */
+.syllabus h2 {
+    text-align: center;
+    margin-bottom: var(--spacing-md);
+}
+
+.syllabus .row {
+    justify-content: center; /* Center the columns horizontally */
+}
+
+.syllabus .card {
+    text-align: center; /* Center the content inside cards */
+    padding: 40px; /* Increased padding for syllabus cards */
+    border: 6px double var(--color-black); /* Add double black border */
+    display: flex; /* Use flexbox for vertical centering */
+    flex-direction: column; /* Stack content vertically */
+    justify-content: center; /* Center content vertically */
+    height: 200px; /* Fixed height for consistent card sizes */
+}
+
+.syllabus .card h3,
+.syllabus .card h5 {
+    margin-top: 0; /* Remove top margin from headings */
+    margin-bottom: var(--spacing-sm); /* Consistent spacing below headings */
+}
+
+.syllabus .card p {
+    margin-bottom: 0; /* Remove bottom margin from paragraphs */
+}
+
+/* Structure Section */
+.structure h2,
+.structure > .container > p {
+    text-align: center;
+    margin-bottom: var(--spacing-md);
+}
+
+.structure .card {
+    text-align: center;
+    padding: 40px; /* Increased padding to match syllabus cards */
+    border: 6px double var(--color-black); /* Add double black border */
+    display: flex; /* Use flexbox for vertical centering */
+    flex-direction: column; /* Stack content vertically */
+    justify-content: center; /* Center content vertically */
+}
+
+.structure .card h3 {
+    margin-top: 0; /* Remove top margin from headings */
+    margin-bottom: var(--spacing-sm); /* Consistent spacing below headings */
+}
+
+.structure .card h5 {
+    margin-top: 0; /* Remove top margin from headings */
+    margin-bottom: var(--spacing-sm); /* Consistent spacing below headings */
+}
+
+.structure .card p {
+    margin-bottom: 0; /* Remove bottom margin from paragraphs */
+}
+
+/* Tenets Section */
+.tenets h2 {
+    text-align: center;
+    margin-bottom: var(--spacing-md);
+}
+
+.tenets .card {
+    text-align: center;
+    padding: 40px; /* Increased padding to match syllabus cards */
+    border: 6px double var(--color-black); /* Add double black border */
+    display: flex; /* Use flexbox for vertical centering */
+    flex-direction: column; /* Stack content vertically */
+    justify-content: center; /* Center content vertically */
+}
+
+.tenets img {
+    max-width: 50%; /* Reduced to 50% of their original size */
+    margin: 0 auto var(--spacing-sm); /* Center the image horizontally with auto margins */
+    display: block; /* Ensure proper centering */
+}
+
+.tenets .card h3 {
+    margin-top: 0; /* Remove top margin from headings */
+    margin-bottom: var(--spacing-sm); /* Consistent spacing below headings */
+}
+
+.tenets .card h4 {
+    margin-top: 0; /* Remove top margin from headings */
+    margin-bottom: var(--spacing-sm); /* Consistent spacing below headings */
+}
+
+.tenets .card p {
+    margin-bottom: 0; /* Remove bottom margin from paragraphs */
+}
+
+.tenets .button {
+    background-color: var(--color-black); /* Black background for the button */
+    color: var(--color-white); /* White text for better contrast */
+    display: inline-block; /* Prevent full width */
+    min-width: 200px; /* Set a minimum width */
+    max-width: 300px; /* Set a maximum width */
+    margin: var(--spacing-md) auto 0; /* Center the button with auto margins */
+    text-align: center; /* Center the text inside the button */
+}
+
+/* Add this to center the button container */
+.tenets .container {
+    text-align: center; /* Center the button container */
+}
+
+.tenets .button:hover {
+    background-color: var(--color-tertiary); /* Keep the hover effect */
+    transform: scale(1.05); /* Keep the scale effect on hover */
+}
+
+/* Pricing Section */
+.pricing h2 {
+    text-align: center;
+    margin-bottom: var(--spacing-md);
+}
+
+.pricing .container {
+    text-align: center;
+}
+
+.pricing .row {
+    justify-content: center;
+    gap: var(--spacing-md);
+}
+
+.pricing .card {
+    padding: 40px;
+    border: 6px double black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.pricing .card h3 {
+    margin-top: 0;
+    margin-bottom: var(--spacing-sm);
+    text-align: center;
+}
+
+.pricing .card p {
+    text-align: left;
+    margin-bottom: var(--spacing-md);
+}
+
+.pricing .card .button {
+    background-color: black;
+    color: white;
+    display: block;
+    width: 80%;
+    max-width: 200px;
+    margin: 0 auto;
+}
+
+.pricing .card .button:hover {
+    background-color: var(--color-accent);
+    color: black;
+}
+
+.pricing .payment-options {
+    margin-top: var(--spacing-md);
+    font-style: italic;
+}
+
+/* Application Section */
+.application h2,
+.application > .container > p {
+    text-align: center;
+    margin-bottom: var(--spacing-md);
+}
+
+.application .card {
+    text-align: center;
+    padding: 40px; /* Increased padding to match other section cards */
+    border: 6px double var(--color-black); /* Add double black border */
+    display: flex; /* Use flexbox for vertical centering */
+    flex-direction: column; /* Stack content vertically */
+    justify-content: center; /* Center content vertically */
+    margin-bottom: var(--spacing-md);
+}
+
+.application .card h4 {
+    margin-top: 0; /* Remove top margin from headings */
+    margin-bottom: var(--spacing-sm); /* Consistent spacing below headings */
+}
+
+.application .card p {
+    text-align: left; /* Keep paragraph text left-aligned for better readability */
+    margin-bottom: 0; /* Remove bottom margin from paragraphs */
+}
+
+.application .button {
+    background-color: var(--color-black); /* Black background for the button */
+    color: var(--color-white); /* White text for better contrast */
+    display: inline-block; /* Prevent full width */
+    min-width: 200px; /* Set a minimum width */
+    max-width: 300px; /* Set a maximum width */
+    margin: var(--spacing-md) auto 0; /* Center the button with auto margins */
+    text-align: center; /* Center the text inside the button */
+}
+
+.application .button:hover {
+    background-color: var(--color-tertiary); /* Keep the hover effect */
+    transform: scale(1.05); /* Keep the scale effect on hover */
+}
+
+/* Center the application container */
+.application .container {
+    text-align: center; /* Center the container content */
+}
+
+/* FAQ Section */
+.faq h2 {
+    text-align: center;
+    margin-bottom: var(--spacing-md);
+}
+
+.faq h4 {
+    margin-top: var(--spacing-md);
+    margin-bottom: var(--spacing-xs);
+    color: var(--color-white);
+}
+
+.faq p {
+    margin-bottom: var(--spacing-md);
+    color: var(--color-white);
+}
+
+/* Final Note Section */
+.final-note h3 {
+    text-align: center;
+}
+
+/* Footer */
+footer {
+    background-color: var(--color-black);
+    color: var(--color-white);
+    padding: var(--spacing-md) 0;
+    text-align: center;
+}
+
+footer img {
+    max-width: 200px;
+    margin-bottom: var(--spacing-sm);
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+/* 
+========================================
+ANIMATIONS
+========================================
+*/
+
+/* Fade in animation for individual components */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Apply the animation to individual components instead of entire section containers */
+.fade-in {
+    opacity: 0;
+    animation: fadeIn 0.8s ease forwards;
+    animation-play-state: paused;
+}
+
+.fade-in.visible {
+    animation-play-state: running;
+}
+
+/* Ensure section backgrounds are visible immediately */
+section {
+    opacity: 1;
+}
+
+/* 
+========================================
+MEDIA QUERIES
+========================================
+*/
+
+/* Fix horizontal scrolling on all devices */
+html, body {
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
+}
+
+/* Tablets */
+@media (max-width: 992px) {
+    :root {
+        --font-size-base: 15px;
+    }
+
+    .col-3,
+    .col-4,
+    .col-5,
+    .col-6,
+    .col-8 {
+        width: 100%;
+    }
+
+    section {
+        padding: var(--spacing-lg) 0;
+    }
+    
+    /* Reduce padding for WHERE I BEGAN and WHERE I AM NOW sections */
+    .artist-types .col-6 {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+    
+    /* Ensure TRANSFORMATION header fits on screen */
+    .transformation-box h5 {
+        font-size: 1rem;
+        word-wrap: break-word;
+        hyphens: auto;
+    }
+    
+    /* Fix inconsistent padding in ABOUT TÂCHES section */
+    .about .drop-cap, 
+    .about p {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
+
+/* Mobile Phones */
+@media (max-width: 576px) {
+    :root {
+        --font-size-base: 14px;
+    }
+
+    .row {
+        margin: 0;
+    }
+
+    .col-3,
+    .col-4,
+    .col-5,
+    .col-6,
+    .col-8 {
+        padding: 0;
+    }
+
+    section {
+        padding: var(--spacing-md) 0;
+    }
+
+    .button {
+        padding: 10px 20px;
+    }
+    
+    /* Further reduce padding for WHERE I BEGAN and WHERE I AM NOW sections on mobile */
+    .artist-types .col-6 {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    
+    /* Override inline styles for WHERE I BEGAN and WHERE I AM NOW sections */
+    .artist-types .col-6[style*="padding-left: 50px; padding-right: 50px"] {
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+    }
+    
+    /* Ensure TRANSFORMATION header fits on screen */
+    .transformation-box h5 {
+        font-size: 0.9rem;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .transformation-box .icon-container {
+        margin-bottom: 10px;
+    }
+    
+    /* Fix inconsistent padding in ABOUT TÂCHES section */
+    .about .drop-cap, 
+    .about p {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    
+    /* Consistent padding for all sections */
+    .container {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    
+    /* Adjust card padding for better mobile experience */
+    .card {
+        padding: 15px;
+    }
+    
+    /* Ensure testimonials fit on mobile */
+    .testimonials-1 h2,
+    .testimonials-2 h2 {
+        font-size: 1.8rem;
+        word-wrap: break-word;
+    }
+}
+
+/* 
+========================================
+For custom font (Canela Text)
+========================================
+*/
+
+@font-face {
+    font-family: 'Canela Text';
+    src: url('../fonts/Canela Text Family/CanelaText-Regular-Trial.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Canela Text';
+    src: url('../fonts/Canela Text Family/CanelaText-Bold-Trial.otf') format('opentype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Canela Text';
+    src: url('../fonts/Canela Text Family/CanelaText-RegularItalic-Trial.otf') format('opentype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Canela Text';
+    src: url('../fonts/Canela Text Family/CanelaText-BoldItalic-Trial.otf') format('opentype');
+    font-weight: bold;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Canela Text';
+    src: url('../fonts/Canela Text Family/CanelaText-Light-Trial.otf') format('opentype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Canela Text';
+    src: url('../fonts/Canela Text Family/CanelaText-Medium-Trial.otf') format('opentype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Canela Text';
+    src: url('../fonts/Canela Text Family/CanelaText-Black-Trial.otf') format('opentype');
+    font-weight: 900;
+    font-style: normal;
+}
+
+/* Transformation boxes styling */
+.transformation-box {
+    border-left: 4px solid var(--color-accent);
+    padding: 25px;
+    margin-bottom: 40px;
+    background-color: rgba(255,255,255,0.05);
+    background-image: 
+        radial-gradient(circle at 100% 100%, rgba(230, 172, 85, 0.03) 0, rgba(230, 172, 85, 0) 20px),
+        linear-gradient(to right, rgba(230, 172, 85, 0.02), rgba(230, 172, 85, 0) 70%);
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.transformation-box:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+}
+
+.transformation-box:hover .icon-container {
+    transform: scale(1.1);
+    background-color: rgba(230, 172, 85, 0.25);
+}
+
+.transformation-box:hover .corner-accent {
+    width: 100px;
+    height: 100px;
+}
+
+.transformation-box .corner-accent {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 80px;
+    height: 80px;
+    background-color: rgba(230, 172, 85, 0.05);
+    border-radius: 0 0 0 80px;
+    transition: width 0.3s ease, height 0.3s ease;
+}
+
+.transformation-box h5 {
+    text-align: left;
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+.transformation-box .icon-container {
+    background-color: rgba(230, 172, 85, 0.15);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 12px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.transformation-box .icon-container i {
+    color: var(--color-accent);
+    font-size: 1.1em;
+}
+
+.transformation-box p {
+    line-height: 2;
+    margin-bottom: 0;
+    position: relative;
+    z-index: 1;
+}
+
+/* Early Bird Banner */
+.early-bird-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--color-accent);
+  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+  z-index: 9999;
+  transition: all 0.3s ease;
+}
+
+.early-bird-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 30px;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.early-bird-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.early-bird-label {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: var(--color-black);
+  margin-bottom: 2px;
+}
+
+.early-bird-info {
+  font-family: 'Crimson Text', serif;
+  font-size: 0.95rem;
+  color: var(--color-black);
+}
+
+.early-bird-countdown {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.countdown-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 60px;
+}
+
+.countdown-number {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-size: 1.5rem;
+  color: var(--color-black);
+  line-height: 1;
+}
+
+.countdown-label {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.7rem ;
+  color: var(--color-black);
+  text-transform: uppercase;
+}
+
+.early-bird-button {
+  background-color: white;
+  color: var(--color-tertiary);
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 10px 20px;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border: 2px solid white;
+}
+
+.early-bird-button:hover {
+  background-color: transparent;
+  color: white;
+}
+
+.early-bird-close {
+  background: none;
+  border: none;
+  color: var(--color-black);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0 0 0 15px;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+.early-bird-close:hover {
+  opacity: 1;
+}
+
+@media (max-width: 992px) {
+  .early-bird-content {
+    flex-direction: column;
+    padding: 15px;
+    gap: 15px;
+  }
+  
+  .early-bird-text {
+    text-align: center;
+    margin-bottom: 5px;
+  }
+  
+  .early-bird-countdown {
+    margin-bottom: 10px;
+  }
+  
+  .countdown-item {
+    min-width: 50px;
+  }
+  
+  .early-bird-button {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .early-bird-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 0;
+  }
+}
+
+@media (max-width: 576px) {
+  .countdown-item {
+    min-width: 40px;
+  }
+  
+  .countdown-number {
+    font-size: 1.4rem;
+  }
+  
+  .countdown-label {
+    font-size: 0.6rem;
+  }
+}
