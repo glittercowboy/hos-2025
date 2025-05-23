@@ -331,6 +331,64 @@ section {
     line-height: 0.9; /* Tighter line height for larger text */
 }
 
+/* Authority Section */
+.authority-section {
+    padding: 50px 0;
+}
+
+/* Brand Ticker Section */
+.brand-ticker {
+    background-color: var(--color-light);
+    padding: 40px 0;
+    overflow: hidden;
+    position: relative;
+}
+
+.ticker-container {
+    width: 100%;
+}
+
+.ticker-wrapper {
+    overflow: hidden;
+    position: relative;
+}
+
+.ticker-content {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    animation: scroll 40s linear infinite;
+    width: fit-content;
+}
+
+.ticker-content img {
+    height: 60px;
+    width: auto;
+    object-fit: contain;
+    filter: grayscale(100%);
+    opacity: 0.5;
+    transition: all 0.3s ease;
+}
+
+.ticker-content img:hover {
+    filter: grayscale(0%);
+    opacity: 0.8;
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* Pause on hover */
+.ticker-wrapper:hover .ticker-content {
+    animation-play-state: paused;
+}
+
 /* Artist Types Section */
 .artist-types h3 {
     text-align: center;
@@ -944,6 +1002,11 @@ html, body {
         grid-template-columns: repeat(4, 1fr);
         gap: 20px;
     }
+    
+    /* Brand ticker for tablets */
+    .ticker-content img {
+        height: 50px;
+    }
 }
 
 /* Mobile Phones */
@@ -1014,6 +1077,25 @@ html, body {
     
     .label-item p {
         font-size: 0.75em;
+    }
+    
+    /* Brand ticker for mobile */
+    .brand-ticker {
+        padding: 30px 0;
+    }
+    
+    .ticker-content {
+        gap: 40px;
+    }
+    
+    .ticker-content img {
+        height: 40px;
+    }
+    
+    /* Authority stats mobile */
+    .authority-section > .container > div:first-child {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
     }
     
     /* Consistent padding for all sections */
