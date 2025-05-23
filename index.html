@@ -1334,6 +1334,7 @@
             grid-template-columns: 1fr 1fr;
             gap: 40px;
             margin-bottom: 40px;
+            align-items: stretch;
           "
         >
           <div
@@ -1341,7 +1342,9 @@
               background-color: rgba(230, 172, 85, 0.08);
               padding: 50px;
               border-radius: 12px;
-              margin-bottom: 30px;
+              height: 100%;
+              display: flex;
+              flex-direction: column;
             "
           >
             <h5
@@ -1379,6 +1382,9 @@
               background-color: rgba(230, 172, 85, 0.08);
               padding: 50px;
               border-radius: 12px;
+              height: 100%;
+              display: flex;
+              flex-direction: column;
             "
           >
             <h5
@@ -1417,28 +1423,40 @@
           </div>
         </div>
 
-        <div
-          style="
-            text-align: center;
-            background-color: rgba(0, 0, 0, 0.03);
-            padding: 30px;
-            border-radius: 8px;
-            margin-bottom: 30px;
-          "
-        >
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px">
-            <div>
-              <h5 style="margin-bottom: 10px; color: var(--color-dark)">
-                Application Deadline
-              </h5>
-              <p style="font-size: 1.1em; font-weight: 500">June 7th, 2025</p>
-            </div>
-            <div>
-              <h5 style="margin-bottom: 10px; color: var(--color-dark)">
-                Intensive Begins
-              </h5>
-              <p style="font-size: 1.1em; font-weight: 500">June 14th, 2025</p>
-            </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 40px;">
+          <div
+            style="
+              background-color: rgba(230, 172, 85, 0.08);
+              padding: 40px;
+              border-radius: 12px;
+              text-align: center;
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              min-height: 150px;
+            "
+          >
+            <h5 style="margin-bottom: 15px; color: var(--color-dark); font-size: 1.1rem; letter-spacing: 0.5px;">
+              APPLICATION DEADLINE
+            </h5>
+            <p style="font-size: 1.8rem; font-weight: 600; color: var(--color-accent); margin: 0;">June 7th, 2025</p>
+          </div>
+          <div
+            style="
+              background-color: rgba(230, 172, 85, 0.08);
+              padding: 40px;
+              border-radius: 12px;
+              text-align: center;
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              min-height: 150px;
+            "
+          >
+            <h5 style="margin-bottom: 15px; color: var(--color-dark); font-size: 1.1rem; letter-spacing: 0.5px;">
+              INTENSIVE BEGINS
+            </h5>
+            <p style="font-size: 1.8rem; font-weight: 600; color: var(--color-accent); margin: 0;">June 14th, 2025</p>
           </div>
         </div>
 
