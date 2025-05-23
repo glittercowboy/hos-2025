@@ -130,23 +130,6 @@ p {
     font-family: 'Canela Text', serif;
 }
 
-/* Drop Cap styling */
-.drop-cap {
-    line-height: 2; /* Double line height for all paragraphs with drop caps */
-}
-
-.drop-cap::first-letter {
-    font-family: 'Canela Text', serif;
-    font-size: 4em; /* Size to match the double line height */
-    font-weight: 900;
-    float: left;
-    margin-right: 0.15em; /* Space to the right */
-    line-height: 0.9; /* Tighter line height for better alignment */
-    margin-top: 0; /* Remove top margin */
-    padding-top: 0.1em; /* Padding to align with text top */
-    height: 1.7em; /* Control the height to be exactly 2 lines with line-height: 2 */
-    color: var(--color-accent);
-}
 
 /* 
 ========================================
@@ -305,10 +288,6 @@ section {
     color: var(--color-white); /* White text */
 }
 
-/* White drop cap for problem section */
-.problem .drop-cap::first-letter {
-    color: var(--color-white); /* White drop cap */
-}
 
 /* Problem Section heading */
 .problem h4 {
@@ -472,10 +451,6 @@ section {
     margin: 0 auto var(--spacing-md);
 }
 
-/* White drop cap for About section */
-.about .drop-cap::first-letter {
-    color: var(--color-white); /* White drop cap */
-}
 
 /* Guest Teachers Section */
 .guest-teachers {
@@ -911,7 +886,6 @@ html, body {
     }
     
     /* Fix inconsistent padding in ABOUT TÂCHES section */
-    .about .drop-cap, 
     .about p {
         padding-left: 20px;
         padding-right: 20px;
@@ -969,7 +943,6 @@ html, body {
     }
     
     /* Fix inconsistent padding in ABOUT TÂCHES section */
-    .about .drop-cap, 
     .about p {
         padding-left: 15px;
         padding-right: 15px;
