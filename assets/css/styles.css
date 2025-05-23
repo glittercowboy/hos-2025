@@ -224,7 +224,7 @@ RESET & BASE STYLES
 }
 
 body {
-  font-family: "Crimson Text", sans-serif;
+  font-family: "Inter", serif;
   font-size: var(--font-size-base);
   line-height: 1.6;
   color: var(--color-black);
@@ -3213,11 +3213,19 @@ section {
 }
 
 /* Brand Ticker Section */
+/* Brand ticker is now integrated into the hero section */
 .brand-ticker {
   background-color: var(--color-light);
   padding: 40px 0;
   overflow: hidden;
   position: relative;
+}
+
+/* Styling for the ticker when inside the hero */
+.hero .ticker-container {
+  overflow: hidden;
+  position: relative;
+  padding-bottom: 20px;
 }
 
 /* Client Grid Styles */
@@ -18328,6 +18336,13 @@ For custom font (Canela Text)
   margin: 10px 0 5px;
   font-weight: 600;
   color: var(--color-dark);
+}
+
+.client-listeners {
+  font-size: 0.85em;
+  margin: 0;
+  color: var(--color-dark);
+  opacity: 0.7;
 }
 
 .client-listeners {
