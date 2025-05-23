@@ -92,27 +92,27 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-    font-family: 'Canela Text', serif;
+    font-family: 'Inter', sans-serif;
     font-size: var(--font-size-h1);
 }
 
 h2 {
-    font-family: 'Canela Text', serif;
+    font-family: 'Inter', sans-serif;
     font-size: var(--font-size-h2);
 }
 
 h3 {
-    font-family: 'Canela Text', serif;
+    font-family: 'Inter', sans-serif;
     font-size: var(--font-size-h3);
 }
 
 h4 {
-    font-family: 'Canela Text', serif;
+    font-family: 'Inter', sans-serif;
     font-size: var(--font-size-h4);
 }
 
 h5 {
-    font-family: 'Canela Text', serif;
+    font-family: 'Inter', sans-serif;
     font-size: var(--font-size-h5);
 }
 
@@ -325,6 +325,7 @@ section {
 }
 
 .hero h1 {
+    font-family: 'Canela Text', serif;
     font-size: var(--font-size-hero);
     margin-bottom: var(--spacing-sm);
     line-height: 0.9; /* Tighter line height for larger text */
@@ -451,6 +452,53 @@ section {
     margin: 0 auto var(--spacing-md);
 }
 
+/* Labels Section */
+.labels-section {
+    padding: 60px 0;
+}
+
+.labels-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 30px;
+    align-items: start;
+}
+
+.label-item {
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.label-item:hover {
+    transform: translateY(-5px);
+}
+
+.label-item img {
+    width: 100%;
+    height: 80px;
+    object-fit: contain;
+    margin-bottom: 10px;
+    filter: grayscale(100%);
+    opacity: 0.6;
+    transition: all 0.3s ease;
+}
+
+.label-item:hover img {
+    filter: grayscale(0%);
+    opacity: 1;
+}
+
+.label-item p {
+    font-size: 0.85em;
+    margin: 0;
+    color: var(--color-dark);
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.label-item:hover p {
+    opacity: 1;
+}
 
 /* Guest Teachers Section */
 .guest-teachers {
@@ -890,6 +938,12 @@ html, body {
         padding-left: 20px;
         padding-right: 20px;
     }
+    
+    /* Labels grid for tablets */
+    .labels-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+    }
 }
 
 /* Mobile Phones */
@@ -946,6 +1000,20 @@ html, body {
     .about p {
         padding-left: 15px;
         padding-right: 15px;
+    }
+    
+    /* Labels grid for mobile */
+    .labels-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+    }
+    
+    .label-item img {
+        height: 60px;
+    }
+    
+    .label-item p {
+        font-size: 0.75em;
     }
     
     /* Consistent padding for all sections */
